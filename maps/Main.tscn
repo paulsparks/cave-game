@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://oveicvp7yom3" path="res://materials/stone.png" id="1_rf4ox"]
 [ext_resource type="Texture2D" uid="uid://dh2l6ocbvq1v2" path="res://materials/pink-wood.png" id="2_2yq2l"]
 [ext_resource type="PackedScene" uid="uid://cdiuhay0s4hxu" path="res://entities/Player.tscn" id="3_sr8hp"]
-[ext_resource type="PackedScene" uid="uid://i1ncxot38ce8" path="res://entities/Spider.tscn" id="4_x4i28"]
+[ext_resource type="PackedScene" uid="uid://bi6vv7ig7fs88" path="res://entities/Spider.tscn" id="4_wckr2"]
 [ext_resource type="Texture2D" uid="uid://11uky37dke56" path="res://materials/decorations/metal_box.png" id="5_5ucun"]
 [ext_resource type="Texture2D" uid="uid://bpvp85si1p4cv" path="res://materials/decorations/vase.png" id="6_frx6g"]
 [ext_resource type="Texture2D" uid="uid://ccy8esmu58x0w" path="res://materials/decorations/pail.png" id="7_uwd6u"]
@@ -110,7 +110,7 @@ light_energy = 200.0
 spot_range = 87.3872
 spot_angle = 66.5689
 
-[node name="Spider" parent="." instance=ExtResource("4_x4i28")]
+[node name="Spider" parent="." instance=ExtResource("4_wckr2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, 7)
 playerPath = NodePath("../Player")
 

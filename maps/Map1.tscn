@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cc65xperjs2gm" path="res://maps/testmap/testmap.glb" id="1_oukff"]
 [ext_resource type="PackedScene" uid="uid://cdiuhay0s4hxu" path="res://entities/Player.tscn" id="2_g8e3p"]
-[ext_resource type="PackedScene" uid="uid://i1ncxot38ce8" path="res://entities/Spider.tscn" id="3_wgk3j"]
+[ext_resource type="PackedScene" uid="uid://bi6vv7ig7fs88" path="res://entities/Spider.tscn" id="3_7fuh0"]
 [ext_resource type="PackedScene" uid="uid://donua4uuvpdno" path="res://entities/Candle.tscn" id="4_btv2h"]
 [ext_resource type="Texture2D" uid="uid://11uky37dke56" path="res://materials/decorations/metal_box.png" id="5_eca12"]
 [ext_resource type="Texture2D" uid="uid://bpvp85si1p4cv" path="res://materials/decorations/vase.png" id="6_1hetn"]
@@ -39,7 +39,7 @@ light_color = Color(0.984314, 0.756863, 0.505882, 1)
 light_energy = 20.0
 spot_range = 26.0
 
-[node name="Spider" parent="." instance=ExtResource("3_wgk3j")]
+[node name="Spider" parent="." instance=ExtResource("3_7fuh0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2.5, 7)
 playerPath = NodePath("../Player")
 
@@ -136,3 +136,5 @@ transform = Transform3D(0.937548, 0, 39.989, -14.8513, 37.1392, 0.34819, -37.129
 shaded = true
 texture_filter = 0
 texture = ExtResource("11_b78dj")
+
+[connection signal="input_event" from="Player" to="Player" method="_on_input_event"]

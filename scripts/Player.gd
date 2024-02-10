@@ -44,10 +44,13 @@ func update_animation_parameters():
 		else:
 			_animation_tree["parameters/conditions/notMoving"] = false
 			_animation_tree["parameters/conditions/isMoving"] = true
-			
-		if Input.is_action_just_pressed("attack"):
-			_animation_tree["parameters/conditions/swingSword"] = true
-			_animation_tree["parameters/conditions/notSwingSword"] = false
-		else:
+		
+		if not Input.is_action_just_pressed("attack"):
 			_animation_tree["parameters/conditions/swingSword"] = false
 			_animation_tree["parameters/conditions/notSwingSword"] = true
+
+
+func _on_input_event(camera, event, position, normal, shape_idx):
+	if event.is_action_just_pressed("attack"):
+		_animation_tree["parameters/conditions/swingSword"] = true
+		_animation_tree["parameters/conditions/notSwingSword"] = false
