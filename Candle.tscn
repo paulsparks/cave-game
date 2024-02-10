@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://donua4uuvpdno"]
+
+[ext_resource type="Texture2D" uid="uid://dro1s07a7r4lj" path="res://materials/decorations/torchfire.png" id="1_qlmn4"]
+
+[sub_resource type="Animation" id="Animation_llifn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4tpnu"]
+resource_name = "torchfire-flicker"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dk6vw"]
+_data = {
+"RESET": SubResource("Animation_llifn"),
+"torchfire-flicker": SubResource("Animation_4tpnu")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tpa08"]
+animation = &"torchfire-flicker"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jtkbc"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_olg2g"]
+states/Start/position = Vector2(204, 73)
+states/torchfire-flicker/node = SubResource("AnimationNodeAnimation_tpa08")
+states/torchfire-flicker/position = Vector2(374, 73)
+transitions = ["Start", "torchfire-flicker", SubResource("AnimationNodeStateMachineTransition_jtkbc")]
+
+[node name="Candle" type="Node3D"]
+
+[node name="CandlePoint" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.298039, 0.694118, 1)
+light_energy = 10.0
+omni_range = 2.942
+
+[node name="CandleLargeGlow" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.298039, 0.694118, 1)
+light_energy = 10.0
+omni_range = 22.7311
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 1.52047, 0)
+texture_filter = 0
+texture = ExtResource("1_qlmn4")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dk6vw")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dk6vw")
+}
+tree_root = SubResource("AnimationNodeStateMachine_olg2g")
+anim_player = NodePath("../AnimationPlayer")

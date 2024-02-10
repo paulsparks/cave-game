@@ -1,0 +1,171 @@
+[gd_scene load_steps=19 format=3 uid="uid://cdiuhay0s4hxu"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_j224j"]
+[ext_resource type="Texture2D" uid="uid://dx7gns3v3pmbb" path="res://materials/walk man.png" id="2_r46v2"]
+[ext_resource type="Texture2D" uid="uid://ck551xolua72t" path="res://materials/sword.png" id="3_e6kp1"]
+
+[sub_resource type="Animation" id="Animation_k51uf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OnHandSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_o4e6m"]
+resource_name = "swing-sword"
+length = 0.18
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OnHandSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_co1ih"]
+resource_name = "walk"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OnHandSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xw54l"]
+_data = {
+"RESET": SubResource("Animation_k51uf"),
+"swing-sword": SubResource("Animation_o4e6m"),
+"walk": SubResource("Animation_co1ih")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a6stt"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k8unc"]
+animation = &"swing-sword"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0xarm"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qk1c4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x3y43"]
+advance_mode = 2
+advance_condition = &"isMoving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uoxl0"]
+advance_mode = 2
+advance_condition = &"notMoving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hvuhk"]
+advance_mode = 2
+advance_condition = &"swingSword"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u7xdb"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"notSwingSword"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_blk1x"]
+advance_mode = 2
+advance_condition = &"swingSword"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7quiy"]
+states/RESET/node = SubResource("AnimationNodeAnimation_a6stt")
+states/RESET/position = Vector2(338, 100)
+states/Start/position = Vector2(182, 100)
+states/swing-sword/node = SubResource("AnimationNodeAnimation_k8unc")
+states/swing-sword/position = Vector2(498, -22)
+states/walk/node = SubResource("AnimationNodeAnimation_0xarm")
+states/walk/position = Vector2(653, 100)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_qk1c4"), "RESET", "walk", SubResource("AnimationNodeStateMachineTransition_x3y43"), "walk", "RESET", SubResource("AnimationNodeStateMachineTransition_uoxl0"), "walk", "swing-sword", SubResource("AnimationNodeStateMachineTransition_hvuhk"), "swing-sword", "RESET", SubResource("AnimationNodeStateMachineTransition_u7xdb"), "RESET", "swing-sword", SubResource("AnimationNodeStateMachineTransition_blk1x")]
+graph_offset = Vector2(0, -75.6885)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ti4pq"]
+size = Vector3(0.15, 0.271582, 0.1)
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0, 0)
+script = ExtResource("1_j224j")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="PlayerSprite" type="Sprite3D" parent="Pivot"]
+shaded = true
+texture_filter = 0
+texture = ExtResource("2_r46v2")
+hframes = 3
+
+[node name="OnHandSprite" type="Sprite3D" parent="Pivot"]
+transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, 0, 0.025, 0.001)
+pixel_size = 0.001
+texture_filter = 0
+texture = ExtResource("3_e6kp1")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
+libraries = {
+"": SubResource("AnimationLibrary_xw54l")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Pivot"]
+libraries = {
+"": SubResource("AnimationLibrary_xw54l")
+}
+tree_root = SubResource("AnimationNodeStateMachine_7quiy")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/isMoving = false
+parameters/conditions/notMoving = false
+parameters/conditions/notSwingSword = false
+parameters/conditions/swingSword = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00740868, 0)
+shape = SubResource("BoxShape3D_ti4pq")
