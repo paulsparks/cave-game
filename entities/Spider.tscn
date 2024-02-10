@@ -1,7 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://i1ncxot38ce8"]
+[gd_scene load_steps=18 format=3 uid="uid://i1ncxot38ce8"]
 
-[ext_resource type="Script" path="res://scripts/Spider.gd" id="1_oom8o"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_2kcfy"]
 [ext_resource type="Texture2D" uid="uid://kqd3l070okm6" path="res://materials/spider.png" id="2_8swdn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_675sg"]
+size = Vector3(14.5, 11, 3)
 
 [sub_resource type="Animation" id="Animation_k51uf"]
 length = 0.001
@@ -98,14 +101,21 @@ states/walk/position = Vector2(468, 42)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_0d448"), "RESET", "walk", SubResource("AnimationNodeStateMachineTransition_sbair"), "walk", "RESET", SubResource("AnimationNodeStateMachineTransition_fs5fi"), "RESET", "fight", SubResource("AnimationNodeStateMachineTransition_f1r4p"), "fight", "RESET", SubResource("AnimationNodeStateMachineTransition_lchoc")]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ti4pq"]
-size = Vector3(0.245032, 0.188623, 0.0973633)
+size = Vector3(12.5, 11, 2)
 
 [node name="Spider" type="CharacterBody3D"]
-script = ExtResource("1_oom8o")
+script = ExtResource("1_2kcfy")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.783234, 2.07396, 0.00131836)
+shape = SubResource("BoxShape3D_675sg")
 
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="PlayerSprite" type="Sprite3D" parent="Pivot"]
+pixel_size = 0.5
 shaded = true
 texture_filter = 0
 texture = ExtResource("2_8swdn")
@@ -128,5 +138,8 @@ parameters/conditions/notAttacking = false
 parameters/conditions/notMoving = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129089, 0.0522349, 0.00131836)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.783234, 2.07396, 0.00131836)
 shape = SubResource("BoxShape3D_ti4pq")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
