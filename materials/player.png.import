@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b421lngfwn56o"
-path="res://.godot/imported/cobwed.png-c0e9b83c743fdc7d935b8968319ecba2.ctex"
+uid="uid://dx7gns3v3pmbb"
+path="res://.godot/imported/player.png-0d54a52d67f7d7474bd626f9490f08cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://materials/decorations/cobwed.png"
-dest_files=["res://.godot/imported/cobwed.png-c0e9b83c743fdc7d935b8968319ecba2.ctex"]
+source_file="res://materials/player.png"
+dest_files=["res://.godot/imported/player.png-0d54a52d67f7d7474bd626f9490f08cb.ctex"]
 
 [params]
 

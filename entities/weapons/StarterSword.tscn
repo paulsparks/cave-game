@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dknpqbbbdei2t"]
+
+[ext_resource type="PackedScene" uid="uid://7wjufei552jc" path="res://entities/weapons/Weapon.tscn" id="1_t2rwr"]
+[ext_resource type="Texture2D" uid="uid://ck551xolua72t" path="res://materials/starter_sword.png" id="2_mc0wh"]
+
+[node name="StarterSword" instance=ExtResource("1_t2rwr")]
+
+[node name="WeaponSprite" parent="." index="0"]
+texture = ExtResource("2_mc0wh")

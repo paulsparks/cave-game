@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://7wjufei552jc"]
+
+[ext_resource type="Script" path="res://scripts/Weapon.gd" id="1_s48mm"]
+
+[sub_resource type="Animation" id="Animation_jqgb5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_woxav"]
+resource_name = "attack"
+length = 0.060002
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rt0ml"]
+_data = {
+"RESET": SubResource("Animation_jqgb5"),
+"attack": SubResource("Animation_woxav")
+}
+
+[node name="Weapon" type="Node3D" groups=["weapon"]]
+script = ExtResource("1_s48mm")
+
+[node name="WeaponSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0.001)
+pixel_size = 0.5
+texture_filter = 0
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rt0ml")
+}

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh2l6ocbvq1v2"
-path="res://.godot/imported/pink-wood.png-803aaa8d96acc6a62bf45205c43cc60d.ctex"
+uid="uid://ck551xolua72t"
+path="res://.godot/imported/starter_sword.png-000a1e6ff1e45cd43e7fa30152b14a52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://materials/pink-wood.png"
-dest_files=["res://.godot/imported/pink-wood.png-803aaa8d96acc6a62bf45205c43cc60d.ctex"]
+source_file="res://materials/starter_sword.png"
+dest_files=["res://.godot/imported/starter_sword.png-000a1e6ff1e45cd43e7fa30152b14a52.ctex"]
 
 [params]
 

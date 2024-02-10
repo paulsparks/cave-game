@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dro1s07a7r4lj"
-path="res://.godot/imported/torchfire.png-59aac604f75598cc238f1c6198652c63.ctex"
+uid="uid://b421lngfwn56o"
+path="res://.godot/imported/cobweb.png-cc6cbd9541b78b7c020932da48d27c48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://materials/decorations/torchfire.png"
-dest_files=["res://.godot/imported/torchfire.png-59aac604f75598cc238f1c6198652c63.ctex"]
+source_file="res://materials/decorations/cobweb.png"
+dest_files=["res://.godot/imported/cobweb.png-cc6cbd9541b78b7c020932da48d27c48.ctex"]
 
 [params]
 

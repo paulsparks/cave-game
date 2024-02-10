@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://donua4uuvpdno"]
+[gd_scene load_steps=5 format=3 uid="uid://donua4uuvpdno"]
 
-[ext_resource type="Texture2D" uid="uid://dro1s07a7r4lj" path="res://materials/decorations/torchfire.png" id="1_qlmn4"]
+[ext_resource type="Texture2D" uid="uid://dro1s07a7r4lj" path="res://materials/decorations/fire.png" id="1_qlmn4"]
 
 [sub_resource type="Animation" id="Animation_llifn"]
 length = 0.001
@@ -40,18 +40,6 @@ _data = {
 "torchfire-flicker": SubResource("Animation_4tpnu")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tpa08"]
-animation = &"torchfire-flicker"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jtkbc"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_olg2g"]
-states/Start/position = Vector2(204, 73)
-states/torchfire-flicker/node = SubResource("AnimationNodeAnimation_tpa08")
-states/torchfire-flicker/position = Vector2(374, 73)
-transitions = ["Start", "torchfire-flicker", SubResource("AnimationNodeStateMachineTransition_jtkbc")]
-
 [node name="Candle" type="Node3D"]
 
 [node name="CandlePoint" type="OmniLight3D" parent="."]
@@ -74,10 +62,4 @@ hframes = 5
 libraries = {
 "": SubResource("AnimationLibrary_dk6vw")
 }
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_dk6vw")
-}
-tree_root = SubResource("AnimationNodeStateMachine_olg2g")
-anim_player = NodePath("../AnimationPlayer")
+autoplay = "torchfire-flicker"

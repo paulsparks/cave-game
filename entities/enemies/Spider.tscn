@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://bi6vv7ig7fs88"]
 
-[ext_resource type="PackedScene" uid="uid://i1ncxot38ce8" path="res://entities/Enemy.tscn" id="1_koct8"]
+[ext_resource type="PackedScene" uid="uid://i1ncxot38ce8" path="res://entities/enemies/Enemy.tscn" id="1_koct8"]
 [ext_resource type="Texture2D" uid="uid://kqd3l070okm6" path="res://materials/spider.png" id="2_8swdn"]
 
 [node name="Spider" instance=ExtResource("1_koct8")]
 
-[node name="PlayerSprite" parent="Pivot" index="0"]
+[node name="EnemySprite" parent="Pivot" index="0"]
 texture = ExtResource("2_8swdn")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx7gns3v3pmbb"
-path="res://.godot/imported/walk man.png-223ee64ab45d40dc3a65bb6ba978fae9.ctex"
+uid="uid://dh2l6ocbvq1v2"
+path="res://.godot/imported/pink_wood.png-35b22b1912629a985bb662463010403f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://materials/walk man.png"
-dest_files=["res://.godot/imported/walk man.png-223ee64ab45d40dc3a65bb6ba978fae9.ctex"]
+source_file="res://materials/pink_wood.png"
+dest_files=["res://.godot/imported/pink_wood.png-35b22b1912629a985bb662463010403f.ctex"]
 
 [params]
 

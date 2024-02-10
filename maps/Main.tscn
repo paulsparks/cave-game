@@ -1,16 +1,16 @@
 [gd_scene load_steps=18 format=3 uid="uid://qmgvip6jijlu"]
 
 [ext_resource type="Texture2D" uid="uid://oveicvp7yom3" path="res://materials/stone.png" id="1_rf4ox"]
-[ext_resource type="Texture2D" uid="uid://dh2l6ocbvq1v2" path="res://materials/pink-wood.png" id="2_2yq2l"]
+[ext_resource type="Texture2D" uid="uid://dh2l6ocbvq1v2" path="res://materials/pink_wood.png" id="2_2yq2l"]
 [ext_resource type="PackedScene" uid="uid://cdiuhay0s4hxu" path="res://entities/Player.tscn" id="3_sr8hp"]
-[ext_resource type="PackedScene" uid="uid://bi6vv7ig7fs88" path="res://entities/Spider.tscn" id="4_wckr2"]
+[ext_resource type="PackedScene" uid="uid://bi6vv7ig7fs88" path="res://entities/enemies/Spider.tscn" id="4_wckr2"]
 [ext_resource type="Texture2D" uid="uid://11uky37dke56" path="res://materials/decorations/metal_box.png" id="5_5ucun"]
 [ext_resource type="Texture2D" uid="uid://bpvp85si1p4cv" path="res://materials/decorations/vase.png" id="6_frx6g"]
-[ext_resource type="Texture2D" uid="uid://ccy8esmu58x0w" path="res://materials/decorations/pail.png" id="7_uwd6u"]
+[ext_resource type="Texture2D" uid="uid://ccy8esmu58x0w" path="res://materials/decorations/bucket.png" id="7_uwd6u"]
 [ext_resource type="Texture2D" uid="uid://b5p2d2e3nqypc" path="res://materials/decorations/barrel.png" id="8_6rau6"]
-[ext_resource type="Texture2D" uid="uid://cxkbbp6pcm3as" path="res://materials/decorations/wood box.png" id="9_11b0b"]
+[ext_resource type="Texture2D" uid="uid://cxkbbp6pcm3as" path="res://materials/decorations/wood_box.png" id="9_11b0b"]
 [ext_resource type="Texture2D" uid="uid://fxbjjioickpc" path="res://materials/decorations/rose.png" id="10_ngm34"]
-[ext_resource type="Texture2D" uid="uid://b421lngfwn56o" path="res://materials/decorations/cobwed.png" id="11_of0h3"]
+[ext_resource type="Texture2D" uid="uid://b421lngfwn56o" path="res://materials/decorations/cobweb.png" id="11_of0h3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4khg8"]
 size = Vector3(60, 2, 60)

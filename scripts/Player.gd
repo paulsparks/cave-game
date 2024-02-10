@@ -2,15 +2,15 @@ extends CharacterBody3D
 
 @export var speed = 30
 
-@onready var _sprite_3d = $Pivot/PlayerSprite
-@onready var _animation_tree: AnimationTree = $Pivot/AnimationTree
-@onready var _on_hand_sprite = $Pivot/OnHandSprite
+@onready var sprite_3d = $Pivot/PlayerSprite
+@onready var animation_player: AnimationPlayer = $Pivot/AnimationPlayer
+@onready var weapon_sprite: Sprite3D = get_tree().get_first_node_in_group("weapon").find_child("WeaponSprite")
 
 var target_velocity = Vector3.ZERO
 
 func flip_sprites_h(value: bool):
-	_sprite_3d.set_flip_h(value)
-	_on_hand_sprite.set_flip_h(value)
+	sprite_3d.set_flip_h(value)
+	weapon_sprite.set_flip_h(value)
 
 func _physics_process(_delta):
 	var direction = Vector3.ZERO
@@ -33,21 +33,12 @@ func _physics_process(_delta):
 	target_velocity.z = direction.z * speed
 	
 	velocity = target_velocity
-	move_and_slide()
 	
-	update_animation_parameters()
-
-func update_animation_parameters():
-		if velocity.x == 0 and velocity.z == 0:
-			_animation_tree["parameters/conditions/notMoving"] = true
-			_animation_tree["parameters/conditions/isMoving"] = false
-		else:
-			_animation_tree["parameters/conditions/notMoving"] = false
-			_animation_tree["parameters/conditions/isMoving"] = true
-		
-		if Input.is_action_just_pressed("attack"):
-			_animation_tree["parameters/conditions/swingSword"] = true
-			_animation_tree["parameters/conditions/notSwingSword"] = false
-		else:
-			_animation_tree["parameters/conditions/swingSword"] = false
-			_animation_tree["parameters/conditions/notSwingSword"] = true
+	if velocity.x == 0 and velocity.z == 0:
+		animation_player.play("RESET")
+		animation_player.stop()
+	else:
+		animation_player.play("walk")
+	
+	
+	move_and_slide()

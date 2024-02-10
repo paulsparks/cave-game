@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccy8esmu58x0w"
-path="res://.godot/imported/pail.png-ea98bca31b3ff34ae45ac2a472fe4238.ctex"
+path="res://.godot/imported/bucket.png-f5f71780b8cfc8ce9244718342b8cd06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://materials/decorations/pail.png"
-dest_files=["res://.godot/imported/pail.png-ea98bca31b3ff34ae45ac2a472fe4238.ctex"]
+source_file="res://materials/decorations/bucket.png"
+dest_files=["res://.godot/imported/bucket.png-f5f71780b8cfc8ce9244718342b8cd06.ctex"]
 
 [params]
 
