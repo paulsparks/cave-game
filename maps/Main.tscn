@@ -1,22 +1,22 @@
 [gd_scene load_steps=18 format=3 uid="uid://qmgvip6jijlu"]
 
-[ext_resource type="Texture2D" uid="uid://oveicvp7yom3" path="res://materials/stone.png" id="1_0d8a3"]
-[ext_resource type="PackedScene" uid="uid://cdiuhay0s4hxu" path="res://Player.tscn" id="1_kxxvm"]
-[ext_resource type="Texture2D" uid="uid://dh2l6ocbvq1v2" path="res://materials/pink-wood.png" id="2_7ej0n"]
-[ext_resource type="PackedScene" uid="uid://i1ncxot38ce8" path="res://Spider.tscn" id="4_66w1s"]
-[ext_resource type="Texture2D" uid="uid://11uky37dke56" path="res://materials/decorations/metal_box.png" id="5_p25ox"]
-[ext_resource type="Texture2D" uid="uid://bpvp85si1p4cv" path="res://materials/decorations/vase.png" id="6_hox36"]
-[ext_resource type="Texture2D" uid="uid://ccy8esmu58x0w" path="res://materials/decorations/pail.png" id="7_wgd2c"]
-[ext_resource type="Texture2D" uid="uid://b5p2d2e3nqypc" path="res://materials/decorations/barrel.png" id="8_iv4ub"]
-[ext_resource type="Texture2D" uid="uid://cxkbbp6pcm3as" path="res://materials/decorations/wood box.png" id="9_bkvxn"]
-[ext_resource type="Texture2D" uid="uid://fxbjjioickpc" path="res://materials/decorations/rose.png" id="9_gfp5u"]
-[ext_resource type="Texture2D" uid="uid://b421lngfwn56o" path="res://materials/decorations/cobwed.png" id="10_qmk82"]
+[ext_resource type="Texture2D" uid="uid://oveicvp7yom3" path="res://materials/stone.png" id="1_rf4ox"]
+[ext_resource type="Texture2D" uid="uid://dh2l6ocbvq1v2" path="res://materials/pink-wood.png" id="2_2yq2l"]
+[ext_resource type="PackedScene" uid="uid://cdiuhay0s4hxu" path="res://entities/Player.tscn" id="3_sr8hp"]
+[ext_resource type="PackedScene" uid="uid://i1ncxot38ce8" path="res://entities/Spider.tscn" id="4_x4i28"]
+[ext_resource type="Texture2D" uid="uid://11uky37dke56" path="res://materials/decorations/metal_box.png" id="5_5ucun"]
+[ext_resource type="Texture2D" uid="uid://bpvp85si1p4cv" path="res://materials/decorations/vase.png" id="6_frx6g"]
+[ext_resource type="Texture2D" uid="uid://ccy8esmu58x0w" path="res://materials/decorations/pail.png" id="7_uwd6u"]
+[ext_resource type="Texture2D" uid="uid://b5p2d2e3nqypc" path="res://materials/decorations/barrel.png" id="8_6rau6"]
+[ext_resource type="Texture2D" uid="uid://cxkbbp6pcm3as" path="res://materials/decorations/wood box.png" id="9_11b0b"]
+[ext_resource type="Texture2D" uid="uid://fxbjjioickpc" path="res://materials/decorations/rose.png" id="10_ngm34"]
+[ext_resource type="Texture2D" uid="uid://b421lngfwn56o" path="res://materials/decorations/cobwed.png" id="11_of0h3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4khg8"]
 size = Vector3(60, 2, 60)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ao3li"]
-albedo_texture = ExtResource("1_0d8a3")
+albedo_texture = ExtResource("1_rf4ox")
 uv1_scale = Vector3(20, 20, 20)
 texture_filter = 0
 
@@ -29,7 +29,7 @@ size = Vector3(60, 2, 60)
 size = Vector3(60, 60, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xx4vv"]
-albedo_texture = ExtResource("2_7ej0n")
+albedo_texture = ExtResource("2_2yq2l")
 uv1_scale = Vector3(10, 10, 10)
 texture_filter = 0
 
@@ -89,7 +89,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29, 60)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
 shape = SubResource("BoxShape3D_hoej5")
 
-[node name="Player" parent="." instance=ExtResource("1_kxxvm")]
+[node name="Player" parent="." instance=ExtResource("3_sr8hp")]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 5.90382, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Player"]
@@ -110,7 +110,7 @@ light_energy = 200.0
 spot_range = 87.3872
 spot_angle = 66.5689
 
-[node name="Spider" parent="." instance=ExtResource("4_66w1s")]
+[node name="Spider" parent="." instance=ExtResource("4_x4i28")]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 16, 3, 7)
 playerPath = NodePath("../Player")
 
@@ -124,40 +124,40 @@ spot_range = 26.0
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 17.5646, 5.46735, -6.98149)
 shaded = true
 texture_filter = 0
-texture = ExtResource("5_p25ox")
+texture = ExtResource("5_5ucun")
 
 [node name="Sprite3D6" type="Sprite3D" parent="."]
 transform = Transform3D(36.0573, 0, -17.3168, 0, 40, 0, 17.3168, 0, 36.0573, 24.7345, 5.46735, 15.172)
 shaded = true
 texture_filter = 0
-texture = ExtResource("6_hox36")
+texture = ExtResource("6_frx6g")
 
 [node name="Sprite3D5" type="Sprite3D" parent="."]
 transform = Transform3D(13.0343, 0, 7.42346, 0, 15, 0, -7.42346, 0, 13.0343, -22.5313, 2.12042, 3.59576)
 shaded = true
 texture_filter = 0
-texture = ExtResource("7_wgd2c")
+texture = ExtResource("7_uwd6u")
 
 [node name="Sprite3D2" type="Sprite3D" parent="."]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -18.1746, 5.46735, -21.9011)
 shaded = true
 texture_filter = 0
-texture = ExtResource("8_iv4ub")
+texture = ExtResource("8_6rau6")
 
 [node name="Sprite3D7" type="Sprite3D" parent="."]
 transform = Transform3D(34.5636, 0, 20.1335, 0, 40, 0, -20.1335, 0, 34.5636, -20.5263, 5.46735, -0.162714)
 shaded = true
 texture_filter = 0
-texture = ExtResource("9_bkvxn")
+texture = ExtResource("9_11b0b")
 
 [node name="Sprite3D4" type="Sprite3D" parent="."]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 10.8898, 1.60563, 17.5779)
 shaded = true
 texture_filter = 0
-texture = ExtResource("9_gfp5u")
+texture = ExtResource("10_ngm34")
 
 [node name="Sprite3D3" type="Sprite3D" parent="."]
 transform = Transform3D(10.3528, 0, 38.637, 0, 40, 0, -38.637, 0, 10.3528, -27.1648, 7.14277, 10.7603)
 shaded = true
 texture_filter = 0
-texture = ExtResource("10_qmk82")
+texture = ExtResource("11_of0h3")

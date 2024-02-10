@@ -1,16 +1,16 @@
 [gd_scene load_steps=14 format=3 uid="uid://dosjss44h1rvv"]
 
-[ext_resource type="PackedScene" uid="uid://cc65xperjs2gm" path="res://maps/testmap/testmap.glb" id="1_1fo4e"]
-[ext_resource type="PackedScene" uid="uid://cdiuhay0s4hxu" path="res://Player.tscn" id="2_isp1r"]
-[ext_resource type="PackedScene" uid="uid://i1ncxot38ce8" path="res://Spider.tscn" id="3_eorqt"]
-[ext_resource type="PackedScene" uid="uid://donua4uuvpdno" path="res://Candle.tscn" id="4_crexl"]
-[ext_resource type="Texture2D" uid="uid://11uky37dke56" path="res://materials/decorations/metal_box.png" id="5_4oe0r"]
-[ext_resource type="Texture2D" uid="uid://bpvp85si1p4cv" path="res://materials/decorations/vase.png" id="6_lqtci"]
-[ext_resource type="Texture2D" uid="uid://ccy8esmu58x0w" path="res://materials/decorations/pail.png" id="7_i4yxs"]
-[ext_resource type="Texture2D" uid="uid://b5p2d2e3nqypc" path="res://materials/decorations/barrel.png" id="8_cpasb"]
-[ext_resource type="Texture2D" uid="uid://cxkbbp6pcm3as" path="res://materials/decorations/wood box.png" id="9_iqlbm"]
-[ext_resource type="Texture2D" uid="uid://fxbjjioickpc" path="res://materials/decorations/rose.png" id="10_aikvq"]
-[ext_resource type="Texture2D" uid="uid://b421lngfwn56o" path="res://materials/decorations/cobwed.png" id="11_yrtyp"]
+[ext_resource type="PackedScene" uid="uid://cc65xperjs2gm" path="res://maps/testmap/testmap.glb" id="1_oukff"]
+[ext_resource type="PackedScene" uid="uid://cdiuhay0s4hxu" path="res://entities/Player.tscn" id="2_g8e3p"]
+[ext_resource type="PackedScene" uid="uid://i1ncxot38ce8" path="res://entities/Spider.tscn" id="3_wgk3j"]
+[ext_resource type="PackedScene" uid="uid://donua4uuvpdno" path="res://entities/Candle.tscn" id="4_btv2h"]
+[ext_resource type="Texture2D" uid="uid://11uky37dke56" path="res://materials/decorations/metal_box.png" id="5_eca12"]
+[ext_resource type="Texture2D" uid="uid://bpvp85si1p4cv" path="res://materials/decorations/vase.png" id="6_1hetn"]
+[ext_resource type="Texture2D" uid="uid://ccy8esmu58x0w" path="res://materials/decorations/pail.png" id="7_7s8gj"]
+[ext_resource type="Texture2D" uid="uid://b5p2d2e3nqypc" path="res://materials/decorations/barrel.png" id="8_uf7gy"]
+[ext_resource type="Texture2D" uid="uid://cxkbbp6pcm3as" path="res://materials/decorations/wood box.png" id="9_qc4kd"]
+[ext_resource type="Texture2D" uid="uid://fxbjjioickpc" path="res://materials/decorations/rose.png" id="10_esubm"]
+[ext_resource type="Texture2D" uid="uid://b421lngfwn56o" path="res://materials/decorations/cobwed.png" id="11_b78dj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bq5qm"]
 size = Vector3(66.1819, 41.124, 2)
@@ -20,7 +20,7 @@ size = Vector3(15.419, 42.189, 5.13342)
 
 [node name="Map1" type="Node"]
 
-[node name="testmap" parent="." instance=ExtResource("1_1fo4e")]
+[node name="testmap" parent="." instance=ExtResource("1_oukff")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.5, 0, -23.5)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
@@ -30,7 +30,7 @@ light_energy = 50.0
 spot_range = 101.036
 spot_angle = 66.5689
 
-[node name="Player" parent="." instance=ExtResource("2_isp1r")]
+[node name="Player" parent="." instance=ExtResource("2_g8e3p")]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 5, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Player"]
@@ -39,7 +39,7 @@ light_color = Color(0.984314, 0.756863, 0.505882, 1)
 light_energy = 20.0
 spot_range = 26.0
 
-[node name="Spider" parent="." instance=ExtResource("3_eorqt")]
+[node name="Spider" parent="." instance=ExtResource("3_wgk3j")]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 16, 2, 7)
 playerPath = NodePath("../Player")
 
@@ -52,25 +52,25 @@ spot_range = 26.0
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, -5.32907e-15, -7.15295e-08, 1.85132e-08, 0.965926, 0.258819, 6.90922e-08, -0.258819, 0.965926, 11.5, 23, 35)
 
-[node name="Candle" parent="." instance=ExtResource("4_crexl")]
+[node name="Candle" parent="." instance=ExtResource("4_btv2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1516, 8.79395, 6.69816)
 
-[node name="Candle2" parent="." instance=ExtResource("4_crexl")]
+[node name="Candle2" parent="." instance=ExtResource("4_btv2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3427, 8.78507, -19.4182)
 
-[node name="Candle3" parent="." instance=ExtResource("4_crexl")]
+[node name="Candle3" parent="." instance=ExtResource("4_btv2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.5002, 8.64051, -19.5069)
 
-[node name="Candle4" parent="." instance=ExtResource("4_crexl")]
+[node name="Candle4" parent="." instance=ExtResource("4_btv2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.381, 8.50689, 6.54585)
 
-[node name="Candle5" parent="." instance=ExtResource("4_crexl")]
+[node name="Candle5" parent="." instance=ExtResource("4_btv2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.19521, 8.94187, -39.4608)
 
-[node name="Candle6" parent="." instance=ExtResource("4_crexl")]
+[node name="Candle6" parent="." instance=ExtResource("4_btv2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.8211, 8.95548, -39.2939)
 
-[node name="Candle7" parent="." instance=ExtResource("4_crexl")]
+[node name="Candle7" parent="." instance=ExtResource("4_btv2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.689, 27.8241, -66.5778)
 
 [node name="Wall4" type="StaticBody3D" parent="."]
@@ -99,40 +99,40 @@ shape = SubResource("BoxShape3D_lxobm")
 transform = Transform3D(36.6607, 0, -15.9999, 0, 40, 0, 15.9999, 0, 36.6607, 39.314, 14.4224, -8.97267)
 shaded = true
 texture_filter = 0
-texture = ExtResource("5_4oe0r")
+texture = ExtResource("5_eca12")
 
 [node name="Vase" type="Sprite3D" parent="."]
 transform = Transform3D(36.0573, 0, -17.3168, 0, 40, 0, 17.3168, 0, 36.0573, 39.7726, 15.9373, 5.85876)
 shaded = true
 texture_filter = 0
-texture = ExtResource("6_lqtci")
+texture = ExtResource("6_1hetn")
 
 [node name="Bucket" type="Sprite3D" parent="."]
 transform = Transform3D(13.0343, 0, 7.42346, 0, 15, 0, -7.42346, 0, 13.0343, -17.4391, 12.068, 7.2365)
 shaded = true
 texture_filter = 0
-texture = ExtResource("7_i4yxs")
+texture = ExtResource("7_7s8gj")
 
 [node name="Barrel" type="Sprite3D" parent="."]
 transform = Transform3D(38.6545, 0, 10.2873, 0, 40, 0, -10.2873, 0, 38.6545, 4.15758, 22.8808, -66.0116)
 shaded = true
 texture_filter = 0
-texture = ExtResource("8_cpasb")
+texture = ExtResource("8_uf7gy")
 
 [node name="LargeMetalBox" type="Sprite3D" parent="."]
 transform = Transform3D(34.5636, 0, 20.1335, 0, 40, 0, -20.1335, 0, 34.5636, -17.213, 15.4008, -8.13461)
 shaded = true
 texture_filter = 0
-texture = ExtResource("9_iqlbm")
+texture = ExtResource("9_qc4kd")
 
 [node name="Rose" type="Sprite3D" parent="."]
 transform = Transform3D(19.2946, 0, 5.26467, 0, 20, 0, -5.26467, 0, 19.2946, -13.9897, 12.0293, -34.4347)
 shaded = true
 texture_filter = 0
-texture = ExtResource("10_aikvq")
+texture = ExtResource("10_esubm")
 
 [node name="Spiderwebs" type="Sprite3D" parent="."]
 transform = Transform3D(0.937548, 0, 39.989, -14.8513, 37.1392, 0.34819, -37.129, -14.8554, 0.870494, -21.9869, 16.3603, -4.74878)
 shaded = true
 texture_filter = 0
-texture = ExtResource("11_yrtyp")
+texture = ExtResource("11_b78dj")

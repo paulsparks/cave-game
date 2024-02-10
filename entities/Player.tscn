@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://cdiuhay0s4hxu"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_j224j"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_j224j"]
 [ext_resource type="Texture2D" uid="uid://dx7gns3v3pmbb" path="res://materials/walk man.png" id="2_r46v2"]
 [ext_resource type="Texture2D" uid="uid://ck551xolua72t" path="res://materials/sword.png" id="3_e6kp1"]
 
