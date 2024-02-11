@@ -2,11 +2,11 @@ class_name Enemy
 extends LivingEntity
 
 @export var speed = 10
-@export var playerPath = NodePath()
+@export var player_path = NodePath()
 
 @onready var sprite_3d = $Pivot/EnemySprite
 @onready var animation_player: AnimationPlayer = $Pivot/AnimationPlayer
-@onready var player = get_node(playerPath)
+@onready var player = get_node(player_path)
 @onready var attack_trigger_shape = $EnemyAttackTrigger/CollisionShape3D
 @onready var collision_shape = $EnemyCollisions
 @onready var heath_display = $Label3D

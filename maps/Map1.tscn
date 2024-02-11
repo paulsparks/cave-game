@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dosjss44h1rvv"]
+[gd_scene load_steps=15 format=3 uid="uid://dosjss44h1rvv"]
 
 [ext_resource type="PackedScene" uid="uid://cc65xperjs2gm" path="res://maps/testmap/testmap.glb" id="1_oukff"]
 [ext_resource type="PackedScene" uid="uid://cdiuhay0s4hxu" path="res://entities/Player.tscn" id="2_g8e3p"]
 [ext_resource type="PackedScene" uid="uid://bi6vv7ig7fs88" path="res://entities/enemies/Spider.tscn" id="3_7fuh0"]
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="3_ack1m"]
 [ext_resource type="PackedScene" uid="uid://donua4uuvpdno" path="res://entities/Candle.tscn" id="4_btv2h"]
 [ext_resource type="Texture2D" uid="uid://11uky37dke56" path="res://materials/decorations/metal_box.png" id="5_eca12"]
 [ext_resource type="Texture2D" uid="uid://bpvp85si1p4cv" path="res://materials/decorations/vase.png" id="6_1hetn"]
@@ -25,32 +26,29 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.5, 
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.916963, 0.398973, 0, -0.398973, 0.916963, 11.5, 24, 22.5)
-light_color = Color(0.65098, 0.47451, 0.882353, 1)
-light_energy = 50.0
+light_color = Color(0.317647, 0.164706, 0.486275, 1)
+light_energy = 6.866
 spot_range = 101.036
 spot_angle = 66.5689
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, -5.32907e-15, -7.15295e-08, 1.85132e-08, 0.965926, 0.258819, 6.90922e-08, -0.258819, 0.965926, 11.5, 23, 35)
 
 [node name="Player" parent="." instance=ExtResource("2_g8e3p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 9.3141, 0.375)
-light_color = Color(0.984314, 0.756863, 0.505882, 1)
-light_energy = 20.0
+light_color = Color(0.956863, 0.580392, 0.619608, 1)
+light_energy = 11.684
 spot_range = 26.0
 
 [node name="Spider" parent="." instance=ExtResource("3_7fuh0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2.5, 7)
-playerPath = NodePath("../Player")
+player_path = NodePath("../Player")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Spider"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 11.375, 0.375)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 13.0242, 4.80067)
 light_color = Color(0.913725, 0, 0.368627, 1)
-light_energy = 20.0
-spot_range = 26.0
+light_energy = 7.0
+spot_range = 21.7863
 
 [node name="Candle" parent="." instance=ExtResource("4_btv2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1516, 8.79395, 6.69816)
@@ -86,6 +84,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -23.5)
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 19.666, 0)
 depth = 40.0
+disabled = true
 polygon = PackedVector2Array(-24.4363, -46.0763, -24.32, 2.34968, -16.7862, 17.1939, -8.72775, 21.3939, 6.07092, 23.2109, 15.6945, 18.6263, 22.9354, 7.33278, 23.7067, 0.244207, 24.5762, -46.5317, 30.4863, -44.1689, 33.9902, 30.0192, 11.2288, 45.6622, -32.1363, 38.8518, -37.0717, -9.68681, -32.0988, -46.7537)
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
@@ -100,6 +99,16 @@ transform = Transform3D(36.6607, 0, -15.9999, 0, 40, 0, 15.9999, 0, 36.6607, 39.
 shaded = true
 texture_filter = 0
 texture = ExtResource("5_eca12")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.957319, 0.289032, 0, -0.289032, 0.957319, 11.5, 20.37, 51.191)
+projection = 2
+fov = 67.7
+size = 12.746
+frustum_offset = Vector2(0.28, 0.16)
+near = 10.0
+script = ExtResource("3_ack1m")
+player_path = NodePath("../Player")
 
 [node name="Vase" type="Sprite3D" parent="."]
 transform = Transform3D(36.0573, 0, -17.3168, 0, 40, 0, 17.3168, 0, 36.0573, 39.7726, 15.9373, 5.85876)
