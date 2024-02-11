@@ -114,7 +114,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2171, 0)
 pixel_size = 0.1
 modulate = Color(1, 0.215686, 0.262745, 1)
 
-[connection signal="is_dead" from="." to="." method="_on_is_dead"]
 [connection signal="area_entered" from="EnemyAttackTrigger" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="EnemyAttackTrigger" to="." method="_on_area_3d_area_exited"]
 [connection signal="area_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_area_entered"]
