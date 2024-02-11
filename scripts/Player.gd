@@ -1,4 +1,4 @@
-extends SpriteCharacterBody3D
+extends LivingEntity
 
 @export var speed = 30
 
@@ -36,6 +36,5 @@ func _physics_process(_delta):
 		animation_player.stop()
 	else:
 		animation_player.play("walk")
-	
 	
 	move_and_slide()

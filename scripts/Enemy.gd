@@ -1,5 +1,5 @@
 class_name Enemy
-extends SpriteCharacterBody3D
+extends LivingEntity
 
 @export var speed = 10
 @export var playerPath = NodePath()
@@ -9,6 +9,7 @@ extends SpriteCharacterBody3D
 @onready var player = get_node(playerPath)
 @onready var attack_trigger_shape = $EnemyAttackTrigger/CollisionShape3D
 @onready var collision_shape = $EnemyCollisions
+@onready var heath_display = $Label3D
 
 var target_velocity = Vector3.ZERO
 var distance = Vector3.ZERO
@@ -51,3 +52,8 @@ func _on_area_3d_area_entered(area):
 func _on_area_3d_area_exited(area):
 	if area.is_in_group("player_trigger"):
 		is_colliding = false
+
+func _on_enemy_hitbox_area_entered(area):
+	if area.is_in_group("weapon_hitbox"):
+		var weapon: Weapon = area.owner
+		health -= weapon.weapon_damage

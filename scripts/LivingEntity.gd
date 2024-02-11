@@ -1,10 +1,22 @@
-class_name SpriteCharacterBody3D
+class_name LivingEntity
 extends CharacterBody3D
 ## A CharacterBody3D, but with some custom functionality needed for our game.
 
 var _original_node_positions: Array[Vector3]
 var _flipped_node_positions: Array[Vector3]
 var _flippable_nodes_have_been_set: bool
+
+## The entity's health.
+var health: float = 100
+
+func _process(_delta):
+	var label = find_child("Label3D")
+	if health <= 0:
+		queue_free()
+
+	# This is temporary
+	if label != null:
+		label.text = "Health: %s" % health
 
 ## Given one or more sprites and nodes, set whether or not the group of sprites
 ## and nodes are flipped. This means flipping the sprites horizontally and
