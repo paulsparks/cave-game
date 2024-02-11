@@ -84,7 +84,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, -23.5)
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 19.666, 0)
 depth = 40.0
-disabled = true
 polygon = PackedVector2Array(-24.4363, -46.0763, -24.32, 2.34968, -16.7862, 17.1939, -8.72775, 21.3939, 6.07092, 23.2109, 15.6945, 18.6263, 22.9354, 7.33278, 23.7067, 0.244207, 24.5762, -46.5317, 30.4863, -44.1689, 33.9902, 30.0192, 11.2288, 45.6622, -32.1363, 38.8518, -37.0717, -9.68681, -32.0988, -46.7537)
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="."]
