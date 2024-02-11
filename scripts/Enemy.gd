@@ -9,7 +9,6 @@ extends LivingEntity
 @onready var player = get_node(player_path)
 @onready var attack_trigger_shape = $EnemyAttackTrigger/CollisionShape3D
 @onready var collision_shape = $EnemyCollisions
-@onready var heath_display = $Label3D
 
 var target_velocity = Vector3.ZERO
 var distance = Vector3.ZERO
