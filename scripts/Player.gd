@@ -1,26 +1,23 @@
-extends CharacterBody3D
+extends SpriteCharacterBody3D
 
 @export var speed = 30
 
 @onready var sprite_3d = $Pivot/PlayerSprite
 @onready var animation_player: AnimationPlayer = $Pivot/AnimationPlayer
-@onready var weapon_sprite: Sprite3D = get_tree().get_first_node_in_group("weapon").find_child("WeaponSprite")
+@onready var weapon_sprite_3d: Node3D = get_tree().get_first_node_in_group("weapon_sprite")
+@onready var weapon_attack_collider_shape: Node3D = get_tree().get_first_node_in_group("attack_collider_shape")
 
 var target_velocity = Vector3.ZERO
-
-func flip_sprites_h(value: bool):
-	sprite_3d.set_flip_h(value)
-	weapon_sprite.set_flip_h(value)
 
 func _physics_process(_delta):
 	var direction = Vector3.ZERO
 
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
-		flip_sprites_h(false)
+		flip_player([weapon_attack_collider_shape], [sprite_3d, weapon_sprite_3d], false)
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
-		flip_sprites_h(true)
+		flip_player([weapon_attack_collider_shape], [sprite_3d, weapon_sprite_3d], true)
 	if Input.is_action_pressed("move_down"):
 		direction.z += 1
 	if Input.is_action_pressed("move_up"):

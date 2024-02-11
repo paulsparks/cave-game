@@ -1,5 +1,5 @@
 class_name Enemy
-extends CharacterBody3D
+extends SpriteCharacterBody3D
 
 @export var speed = 10
 @export var playerPath = NodePath()
@@ -7,6 +7,8 @@ extends CharacterBody3D
 @onready var sprite_3d = $Pivot/EnemySprite
 @onready var animation_player: AnimationPlayer = $Pivot/AnimationPlayer
 @onready var player = get_node(playerPath)
+@onready var attack_trigger_shape = $EnemyAttackTrigger/CollisionShape3D
+@onready var collision_shape = $EnemyCollisions
 
 var target_velocity = Vector3.ZERO
 var distance = Vector3.ZERO
@@ -24,9 +26,9 @@ func movement_logic():
 		direction = distance.normalized()
 		
 	if direction.x > 0:
-		sprite_3d.set_flip_h(false)
+		flip_player([attack_trigger_shape, collision_shape], [sprite_3d], false)
 	else:
-		sprite_3d.set_flip_h(true)
+		flip_player([attack_trigger_shape, collision_shape], [sprite_3d], true)
 
 	if !is_colliding:
 		target_velocity.x = direction.x * speed

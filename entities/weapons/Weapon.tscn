@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://7wjufei552jc"]
+[gd_scene load_steps=8 format=3 uid="uid://7wjufei552jc"]
 
 [ext_resource type="Script" path="res://scripts/Weapon.gd" id="1_s48mm"]
 
@@ -40,10 +40,21 @@ _data = {
 "attack": SubResource("Animation_woxav")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hns12"]
+size = Vector3(11, 12, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vg55"]
+transparency = 1
+albedo_color = Color(0, 1, 1, 0.231373)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cu407"]
+material = SubResource("StandardMaterial3D_6vg55")
+size = Vector3(11, 12, 5)
+
 [node name="Weapon" type="Node3D" groups=["weapon"]]
 script = ExtResource("1_s48mm")
 
-[node name="WeaponSprite" type="Sprite3D" parent="."]
+[node name="WeaponSprite" type="Sprite3D" parent="." groups=["weapon_sprite"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0.001)
 pixel_size = 0.5
 texture_filter = 0
@@ -53,3 +64,12 @@ hframes = 4
 libraries = {
 "": SubResource("AnimationLibrary_rt0ml")
 }
+
+[node name="AttackCollider" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackCollider" groups=["attack_collider_shape"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -0.412, 0)
+shape = SubResource("BoxShape3D_hns12")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AttackCollider/CollisionShape3D"]
+mesh = SubResource("BoxMesh_cu407")

@@ -7,3 +7,6 @@
 
 [node name="WeaponSprite" parent="." index="0"]
 texture = ExtResource("2_mc0wh")
+
+[node name="CollisionShape3D" parent="AttackCollider" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.412109, 0)

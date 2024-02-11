@@ -1,8 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://i1ncxot38ce8"]
+[gd_scene load_steps=10 format=3 uid="uid://i1ncxot38ce8"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_m68i6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_675sg"]
+size = Vector3(14.5, 11, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hthon"]
+transparency = 1
+albedo_color = Color(0, 1, 1, 0.231373)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o5c1l"]
+material = SubResource("StandardMaterial3D_hthon")
 size = Vector3(14.5, 11, 3)
 
 [sub_resource type="Animation" id="Animation_k51uf"]
@@ -68,11 +76,14 @@ size = Vector3(12.5, 11, 2)
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_m68i6")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="EnemyAttackTrigger" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.783234, 2.07396, 0.00131836)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyAttackTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
 shape = SubResource("BoxShape3D_675sg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyAttackTrigger/CollisionShape3D"]
+mesh = SubResource("BoxMesh_o5c1l")
 
 [node name="Pivot" type="Node3D" parent="."]
 
@@ -87,9 +98,9 @@ libraries = {
 "": SubResource("AnimationLibrary_xw54l")
 }
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.783234, 2.07396, 0.00131836)
+[node name="EnemyCollisions" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
 shape = SubResource("BoxShape3D_ti4pq")
 
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
-[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
+[connection signal="area_entered" from="EnemyAttackTrigger" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="EnemyAttackTrigger" to="." method="_on_area_3d_area_exited"]
