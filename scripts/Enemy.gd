@@ -2,11 +2,11 @@ class_name Enemy
 extends CharacterBody3D
 
 @export var speed = 10
-@export var playerPath = NodePath()
+@export var player_path = NodePath()
 
 @onready var sprite_3d = $Pivot/EnemySprite
 @onready var animation_player: AnimationPlayer = $Pivot/AnimationPlayer
-@onready var player = get_node(playerPath)
+@onready var player = get_node(player_path)
 
 var target_velocity = Vector3.ZERO
 var distance = Vector3.ZERO
