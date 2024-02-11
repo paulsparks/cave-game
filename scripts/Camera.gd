@@ -25,12 +25,12 @@ func _process(delta):
 	
 	# This ever so slightly rotates the camera toward the player while it is not directly in line with the player on the x axis.
 	var target_direction = player.global_transform.origin - global_transform.origin
-	var target_rotation = Basis().looking_at(target_direction, Vector3(0, 1, 0)).get_euler()
+	var target_rotation = Basis.looking_at(target_direction, Vector3(0, 1, 0)).get_euler()
 	
 	target_rotation.y = clamp(target_rotation.y, -max_rotation, max_rotation)
 	target_rotation.x = fixed_rotation.x
 	target_rotation.z = fixed_rotation.z
 	
 	current_rotation = current_rotation.lerp(target_rotation, 1.0 - pow(rotation_lag, delta))
-	global_transform.basis = Basis().from_euler(current_rotation)
+	global_transform.basis = Basis.from_euler(current_rotation)
 	

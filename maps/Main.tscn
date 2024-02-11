@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://qmgvip6jijlu"]
+[gd_scene load_steps=19 format=3 uid="uid://qmgvip6jijlu"]
 
 [ext_resource type="Texture2D" uid="uid://oveicvp7yom3" path="res://materials/stone.png" id="1_rf4ox"]
 [ext_resource type="Texture2D" uid="uid://dh2l6ocbvq1v2" path="res://materials/pink_wood.png" id="2_2yq2l"]
 [ext_resource type="PackedScene" uid="uid://cdiuhay0s4hxu" path="res://entities/Player.tscn" id="3_sr8hp"]
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="4_a5ed1"]
 [ext_resource type="PackedScene" uid="uid://bi6vv7ig7fs88" path="res://entities/enemies/Spider.tscn" id="4_wckr2"]
 [ext_resource type="Texture2D" uid="uid://11uky37dke56" path="res://materials/decorations/metal_box.png" id="5_5ucun"]
 [ext_resource type="Texture2D" uid="uid://bpvp85si1p4cv" path="res://materials/decorations/vase.png" id="6_frx6g"]
@@ -98,10 +99,10 @@ light_color = Color(0.984314, 0.756863, 0.505882, 1)
 light_energy = 20.0
 spot_range = 26.0
 
-[node name="CameraPivot" type="Marker3D" parent="."]
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 1.77636e-15, -7.15295e-08, 1.85132e-08, 0.965926, 0.258819, 6.90922e-08, -0.258819, 0.965926, -1.5301, 14.8217, 39.7386)
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, -5.32907e-15, -7.15295e-08, 1.85132e-08, 0.965926, 0.258819, 6.90922e-08, -0.258819, 0.965926, -1.53, 20.37, 39.739)
+script = ExtResource("4_a5ed1")
+player_path = NodePath("../Player")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 60, 32)
@@ -112,7 +113,7 @@ spot_angle = 66.5689
 
 [node name="Spider" parent="." instance=ExtResource("4_wckr2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 3, 7)
-playerPath = NodePath("../Player")
+player_path = NodePath("../Player")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Spider"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 7.45078, 0.375)
