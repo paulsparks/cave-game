@@ -31,6 +31,25 @@ light_energy = 6.866
 spot_range = 101.036
 spot_angle = 66.5689
 
+[node name="Player" parent="." instance=ExtResource("2_g8e3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 9.3141, 0.375)
+light_color = Color(0.956863, 0.580392, 0.619608, 1)
+light_energy = 11.684
+spot_range = 26.0
+
+[node name="Spider" parent="." instance=ExtResource("3_7fuh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2.5, 7)
+player_path = NodePath("../Player")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Spider"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 13.0242, 4.80067)
+light_color = Color(0.913725, 0, 0.368627, 1)
+light_energy = 7.0
+spot_range = 21.7863
+
 [node name="Candle" parent="." instance=ExtResource("4_btv2h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1516, 8.79395, 6.69816)
 
@@ -81,15 +100,6 @@ shaded = true
 texture_filter = 0
 texture = ExtResource("5_eca12")
 
-[node name="Player" parent="." instance=ExtResource("2_g8e3p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.02293, 6.5, 0)
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 9.3141, 0.375)
-light_color = Color(0.956863, 0.580392, 0.619608, 1)
-light_energy = 11.684
-spot_range = 26.0
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.957319, 0.289032, 0, -0.289032, 0.957319, 11.5, 20.37, 51.191)
 projection = 2
@@ -135,13 +145,3 @@ transform = Transform3D(0.937548, 0, 39.989, -14.8513, 37.1392, 0.34819, -37.129
 shaded = true
 texture_filter = 0
 texture = ExtResource("11_b78dj")
-
-[node name="Spider" parent="." instance=ExtResource("3_7fuh0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2.5, 7)
-player_path = NodePath("../Player")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Spider"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 13.0242, 4.80067)
-light_color = Color(0.913725, 0, 0.368627, 1)
-light_energy = 7.0
-spot_range = 21.7863
