@@ -35,7 +35,6 @@ transform = Transform3D(1, -5.32907e-15, -7.15295e-08, 1.85132e-08, 0.965926, 0.
 
 [node name="Player" parent="." instance=ExtResource("2_g8e3p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
-speed = 30
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 9.3141, 0.375)

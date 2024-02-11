@@ -26,9 +26,9 @@ func movement_logic():
 		direction = distance.normalized()
 		
 	if direction.x > 0:
-		flip_player([attack_trigger_shape, collision_shape], [sprite_3d], false)
+		flip_entities([attack_trigger_shape, collision_shape], [sprite_3d], false)
 	else:
-		flip_player([attack_trigger_shape, collision_shape], [sprite_3d], true)
+		flip_entities([attack_trigger_shape, collision_shape], [sprite_3d], true)
 
 	if !is_colliding:
 		target_velocity.x = direction.x * speed
