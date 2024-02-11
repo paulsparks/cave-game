@@ -76,3 +76,5 @@ disabled = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AttackCollider/CollisionShape3D"]
 visible = false
 mesh = SubResource("BoxMesh_cu407")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -76,3 +76,8 @@ libraries = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.204513, 0)
 shape = SubResource("BoxShape3D_ti4pq")
+
+[node name="DebugHealthBar" type="Label3D" parent="." groups=["debug_health"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2171, 0)
+pixel_size = 0.1
+modulate = Color(1, 0.215686, 0.262745, 1)

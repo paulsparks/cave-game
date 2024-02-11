@@ -27,9 +27,9 @@ func movement_logic():
 		direction = distance.normalized()
 		
 	if direction.x > 0:
-		flip_entities([attack_trigger_shape, collision_shape], [sprite_3d], false)
+		flip_entity([attack_trigger_shape, collision_shape], [sprite_3d], false)
 	else:
-		flip_entities([attack_trigger_shape, collision_shape], [sprite_3d], true)
+		flip_entity([attack_trigger_shape, collision_shape], [sprite_3d], true)
 
 	if !is_colliding:
 		target_velocity.x = direction.x * speed
@@ -56,4 +56,4 @@ func _on_area_3d_area_exited(area):
 func _on_enemy_hitbox_area_entered(area):
 	if area.is_in_group("weapon_hitbox"):
 		var weapon: Weapon = area.owner
-		health -= weapon.weapon_damage
+		take_damage(weapon.weapon_damage)

@@ -7,22 +7,40 @@ var _flipped_node_positions: Array[Vector3]
 var _flippable_nodes_have_been_set: bool
 
 ## The entity's health.
-var health: float = 100
+@export var health: float = 100
+## If true, the entity will have a health bar, as long as they are provided
+## with a Label3D in the "debug_health" group.
+@export var display_debug_health: bool
 
-func _process(_delta):
-	var label = find_child("Label3D")
+## Will emit when the entity dies.
+signal is_dead
+
+func _ready():
+	_draw_debug_health()
+
+func _draw_debug_health():
+	if display_debug_health:
+		var labels = get_children().filter(func(x): return x.is_in_group("debug_health"))
+		if not labels.is_empty():
+			labels[0].text = "Health: %s" % health
+
+## Deal a specified amount of damage to the entity. Once the entity's health
+## has reached 0, the entity will be deleted from the scene, and will emit
+## the is_dead signal.
+func take_damage(amount):
+	health -= amount
+	
 	if health <= 0:
+		is_dead.emit()
 		queue_free()
-
-	# This is temporary
-	if label != null:
-		label.text = "Health: %s" % health
+	
+	_draw_debug_health()
 
 ## Given one or more sprites and nodes, set whether or not the group of sprites
 ## and nodes are flipped. This means flipping the sprites horizontally and
 ## inverting the nodes about the x-axis. This comes in handy when you need
 ## to turn a character while considering the character's hitboxes and triggers.
-func flip_entities(nodes_to_flip: Array[Node3D], sprites: Array[Sprite3D], value: bool):
+func flip_entity(nodes_to_flip: Array[Node3D], sprites: Array[Sprite3D], value: bool):
 	flip_nodes(nodes_to_flip, value)
 	flip_sprites(sprites, value)
 

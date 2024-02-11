@@ -14,10 +14,10 @@ func _physics_process(_delta):
 
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
-		flip_entities([weapon_attack_collider_shape], [sprite_3d, weapon_sprite_3d], false)
+		flip_entity([weapon_attack_collider_shape], [sprite_3d, weapon_sprite_3d], false)
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
-		flip_entities([weapon_attack_collider_shape], [sprite_3d, weapon_sprite_3d], true)
+		flip_entity([weapon_attack_collider_shape], [sprite_3d, weapon_sprite_3d], true)
 	if Input.is_action_pressed("move_down"):
 		direction.z += 1
 	if Input.is_action_pressed("move_up"):
