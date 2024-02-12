@@ -8,4 +8,3 @@ health = 200.0
 
 [node name="EnemySprite" parent="Pivot" index="0"]
 texture = ExtResource("2_8swdn")
-frame = 0

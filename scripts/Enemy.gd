@@ -54,7 +54,6 @@ func _on_area_3d_area_entered(area):
 		is_colliding = true
 		animation_player.play("attack")
 		timer.start(animation_player.current_animation_length)
-		print(animation_player.current_animation_length)
 
 func _on_area_3d_area_exited(area):
 	if area.is_in_group("player_hitbox"):
