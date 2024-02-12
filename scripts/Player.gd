@@ -38,3 +38,6 @@ func _physics_process(_delta):
 		animation_player.play("walk")
 	
 	move_and_slide()
+
+func _on_spider_hit_player(enemy):
+	take_damage(enemy.damage_per_hit)
