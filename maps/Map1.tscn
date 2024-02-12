@@ -146,5 +146,3 @@ transform = Transform3D(0.937548, 0, 39.989, -14.8513, 37.1392, 0.34819, -37.129
 shaded = true
 texture_filter = 0
 texture = ExtResource("11_b78dj")
-
-[connection signal="is_dead" from="Spider" to="Spider" method="_on_is_dead"]
