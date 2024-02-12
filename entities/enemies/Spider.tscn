@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://kqd3l070okm6" path="res://materials/spider.png" id="2_8swdn"]
 
 [node name="Spider" instance=ExtResource("1_koct8")]
+health = 200.0
 
 [node name="EnemySprite" parent="Pivot" index="0"]
 texture = ExtResource("2_8swdn")
+frame = 0

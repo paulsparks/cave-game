@@ -16,21 +16,20 @@ var current_rotation : Vector3 = Vector3.ZERO # Needs to be initialized out of _
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-	# This moves the camera to be in line with the player as specified by targeted_distance_from_player, adding the natural lag along the way.
-	var actual_distance_from_player = global_transform.origin - player.global_transform.origin
-	var accel = acceleration_speed * (targeted_distance_from_player - actual_distance_from_player)
-	accel = accel.clamp(-max_speed, max_speed)
-	global_transform.origin += accel * delta
-	
-	# This ever so slightly rotates the camera toward the player while it is not directly in line with the player on the x axis.
-	var target_direction = player.global_transform.origin - global_transform.origin
-	var target_rotation = Basis.looking_at(target_direction, Vector3(0, 1, 0)).get_euler()
-	
-	target_rotation.y = clamp(target_rotation.y, -max_rotation, max_rotation)
-	target_rotation.x = fixed_rotation.x
-	target_rotation.z = fixed_rotation.z
-	
-	current_rotation = current_rotation.lerp(target_rotation, 1.0 - pow(rotation_lag, delta))
-	global_transform.basis = Basis.from_euler(current_rotation)
-	
+	if is_instance_valid(player):
+		# This moves the camera to be in line with the player as specified by targeted_distance_from_player, adding the natural lag along the way.
+		var actual_distance_from_player = global_transform.origin - player.global_transform.origin
+		var accel = acceleration_speed * (targeted_distance_from_player - actual_distance_from_player)
+		accel = accel.clamp(-max_speed, max_speed)
+		global_transform.origin += accel * delta
+		
+		# This ever so slightly rotates the camera toward the player while it is not directly in line with the player on the x axis.
+		var target_direction = player.global_transform.origin - global_transform.origin
+		var target_rotation = Basis.looking_at(target_direction, Vector3(0, 1, 0)).get_euler()
+		
+		target_rotation.y = clamp(target_rotation.y, -max_rotation, max_rotation)
+		target_rotation.x = fixed_rotation.x
+		target_rotation.z = fixed_rotation.z
+		
+		current_rotation = current_rotation.lerp(target_rotation, 1.0 - pow(rotation_lag, delta))
+		global_transform.basis = Basis.from_euler(current_rotation)

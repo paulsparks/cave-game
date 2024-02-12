@@ -51,9 +51,9 @@ size = Vector3(7, 13.5, 3)
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_j224j")
 
-[node name="Area3D" type="Area3D" parent="." groups=["player_trigger"]]
+[node name="PlayerHitbox" type="Area3D" parent="." groups=["player_hitbox"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.204513, 0)
 shape = SubResource("BoxShape3D_7qmrq")
 
@@ -81,3 +81,5 @@ shape = SubResource("BoxShape3D_ti4pq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2171, 0)
 pixel_size = 0.1
 modulate = Color(1, 0.215686, 0.262745, 1)
+
+[connection signal="area_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_area_entered"]
