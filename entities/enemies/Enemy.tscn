@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://i1ncxot38ce8"]
+[gd_scene load_steps=12 format=3 uid="uid://i1ncxot38ce8"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_m68i6"]
+[ext_resource type="Script" path="res://entities/HurtboxComponent.gd" id="2_qjyh8"]
+[ext_resource type="Script" path="res://scripts/HealthComponent.gd" id="3_bviwp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_675sg"]
 size = Vector3(14.5, 11, 3)
@@ -75,13 +77,13 @@ size = Vector3(12.5, 11, 2)
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_m68i6")
 
-[node name="EnemyAttackTrigger" type="Area3D" parent="."]
+[node name="Hitbox" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyAttackTrigger"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
 shape = SubResource("BoxShape3D_675sg")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyAttackTrigger/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox/CollisionShape3D"]
 visible = false
 mesh = SubResource("BoxMesh_o5c1l")
 
@@ -102,20 +104,26 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
 shape = SubResource("BoxShape3D_ti4pq")
 
-[node name="EnemyHitbox" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
-shape = SubResource("BoxShape3D_ti4pq")
-
-[node name="DebugHealthBar" type="Label3D" parent="." groups=["debug_health"]]
+[node name="DebugHealthBar" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2171, 0)
 pixel_size = 0.1
 modulate = Color(1, 0.215686, 0.262745, 1)
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="area_entered" from="EnemyAttackTrigger" to="." method="_on_area_3d_area_entered"]
-[connection signal="area_exited" from="EnemyAttackTrigger" to="." method="_on_area_3d_area_exited"]
-[connection signal="area_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_area_entered"]
+[node name="HurtboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("2_qjyh8")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
+shape = SubResource("BoxShape3D_ti4pq")
+
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("debug_health_label")]
+script = ExtResource("3_bviwp")
+MAX_HEALTH = 200.0
+debug_health_label = NodePath("../DebugHealthBar")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

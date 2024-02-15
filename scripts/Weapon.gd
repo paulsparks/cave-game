@@ -2,10 +2,10 @@ class_name Weapon
 extends Node3D
 
 @export var attack_speed: float = .3
-@export var weapon_damage: float = 34
+@export var attack_damage: float = 34
 
 @onready var animation_player = $AnimationPlayer
-@onready var collision_shape = $AttackCollider/CollisionShape3D
+@onready var collision_shape = $Hitbox/CollisionShape3D
 
 func _attack_and_reset():
 	animation_player.play("attack")
@@ -26,3 +26,13 @@ func _process(_delta):
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "RESET":
 		collision_shape.set_disabled(true)
+
+# This needs to be fixed! The player can spam A and D to reenter the hitbox and double smack
+func _on_hitbox_area_entered(area):
+	if area is HurtboxComponent and not area.is_player:
+		var hurtbox: HurtboxComponent = area
+		
+		var attack = Attack.new()
+		attack.attack_damage = attack_damage
+		
+		hurtbox.damage(attack)

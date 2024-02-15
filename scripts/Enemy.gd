@@ -1,22 +1,21 @@
 class_name Enemy
-extends LivingEntity
+extends CharacterBody3D
 
 @export var speed = 10
-@export var player_path = NodePath()
+@export var player: CharacterBody3D
 @export var damage_per_hit = 20
 
 @onready var sprite_3d = $Pivot/EnemySprite
 @onready var animation_player: AnimationPlayer = $Pivot/AnimationPlayer
-@onready var player = get_node(player_path)
-@onready var attack_trigger_shape = $EnemyAttackTrigger/CollisionShape3D
+@onready var attack_trigger_shape = $Hitbox/CollisionShape3D
 @onready var collision_shape = $EnemyCollisions
 @onready var timer = $Timer
-
-signal hit_player(enemy: LivingEntity)
 
 var target_velocity = Vector3.ZERO
 var distance = Vector3.ZERO
 var is_colliding: bool = false
+var hurtbox_being_attacked: HurtboxComponent
+var entity_interface: EntityInterface = EntityInterface.new()
 
 func _physics_process(_delta):
 	movement_logic()
@@ -31,9 +30,9 @@ func movement_logic():
 			direction = distance.normalized()
 			
 		if direction.x > 0:
-			flip_entity([attack_trigger_shape, collision_shape], [sprite_3d], false)
+			entity_interface.flip_entity([attack_trigger_shape, collision_shape], [sprite_3d], false)
 		else:
-			flip_entity([attack_trigger_shape, collision_shape], [sprite_3d], true)
+			entity_interface.flip_entity([attack_trigger_shape, collision_shape], [sprite_3d], true)
 
 		if !is_colliding:
 			target_velocity.x = direction.x * speed
@@ -49,21 +48,21 @@ func movement_logic():
 	else:
 		animation_player.play("RESET")
 
-func _on_area_3d_area_entered(area):
-	if area.is_in_group("player_hitbox"):
+func _on_hitbox_area_entered(area):
+	if area is HurtboxComponent and area.is_player:
 		is_colliding = true
 		animation_player.play("attack")
+		hurtbox_being_attacked = area
 		timer.start(animation_player.current_animation_length)
 
-func _on_area_3d_area_exited(area):
-	if area.is_in_group("player_hitbox"):
+func _on_hitbox_area_exited(area):
+	if area is HurtboxComponent:
 		is_colliding = false
 		timer.stop()
-
-func _on_enemy_hitbox_area_entered(area):
-	if area.is_in_group("weapon_hitbox"):
-		var weapon: Weapon = area.owner
-		take_damage(weapon.weapon_damage)
+		hurtbox_being_attacked = null
 
 func _on_timer_timeout():
-	hit_player.emit(self)
+	var attack = Attack.new()
+	attack.attack_damage = damage_per_hit
+	
+	hurtbox_being_attacked.damage(attack)

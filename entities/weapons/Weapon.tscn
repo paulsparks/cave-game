@@ -51,10 +51,10 @@ albedo_color = Color(0, 1, 1, 0.231373)
 material = SubResource("StandardMaterial3D_6vg55")
 size = Vector3(9, 12, 8)
 
-[node name="Weapon" type="Node3D" groups=["weapon"]]
+[node name="Weapon" type="Node3D"]
 script = ExtResource("1_s48mm")
 
-[node name="WeaponSprite" type="Sprite3D" parent="." groups=["weapon_sprite"]]
+[node name="WeaponSprite" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0.001)
 pixel_size = 0.5
 shaded = true
@@ -66,15 +66,16 @@ libraries = {
 "": SubResource("AnimationLibrary_rt0ml")
 }
 
-[node name="AttackCollider" type="Area3D" parent="." groups=["weapon_hitbox"]]
+[node name="Hitbox" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackCollider" groups=["attack_collider_shape"]]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.412, 0)
 shape = SubResource("BoxShape3D_hns12")
 disabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="AttackCollider/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox/CollisionShape3D"]
 visible = false
 mesh = SubResource("BoxMesh_cu407")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
