@@ -1,23 +1,24 @@
-extends LivingEntity
+extends CharacterBody3D
 
 @export var speed = 30
 
 @onready var sprite_3d = $Pivot/PlayerSprite
 @onready var animation_player: AnimationPlayer = $Pivot/AnimationPlayer
-@onready var weapon_sprite_3d: Node3D = get_tree().get_first_node_in_group("weapon_sprite")
-@onready var weapon_attack_collider_shape: Node3D = get_tree().get_first_node_in_group("attack_collider_shape")
+@onready var weapon_sprite_3d: Node3D = $Pivot/StarterSword/WeaponSprite
+@onready var weapon_attack_collider_shape: Node3D = $Pivot/StarterSword/Hitbox/CollisionShape3D
 
 var target_velocity = Vector3.ZERO
+var entity_interface: EntityInterface = EntityInterface.new()
 
 func _physics_process(_delta):
 	var direction = Vector3.ZERO
 
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
-		flip_entity([weapon_attack_collider_shape], [sprite_3d, weapon_sprite_3d], false)
+		entity_interface.flip_entity([weapon_attack_collider_shape], [sprite_3d, weapon_sprite_3d], false)
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
-		flip_entity([weapon_attack_collider_shape], [sprite_3d, weapon_sprite_3d], true)
+		entity_interface.flip_entity([weapon_attack_collider_shape], [sprite_3d, weapon_sprite_3d], true)
 	if Input.is_action_pressed("move_down"):
 		direction.z += 1
 	if Input.is_action_pressed("move_up"):
@@ -38,6 +39,3 @@ func _physics_process(_delta):
 		animation_player.play("walk")
 	
 	move_and_slide()
-
-func _on_spider_hit_player(enemy):
-	take_damage(enemy.damage_per_hit)

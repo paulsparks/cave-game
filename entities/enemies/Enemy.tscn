@@ -1,73 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://i1ncxot38ce8"]
+[gd_scene load_steps=7 format=3 uid="uid://i1ncxot38ce8"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_m68i6"]
+[ext_resource type="PackedScene" uid="uid://b6hoxlk4f2gue" path="res://CustomNodes/hurtbox_component.tscn" id="2_kso05"]
+[ext_resource type="Script" path="res://scripts/HealthComponent.gd" id="3_bviwp"]
+[ext_resource type="PackedScene" uid="uid://drr1fkw237gjt" path="res://CustomNodes/debug_box_mesh_component.tscn" id="3_wjuib"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_675sg"]
 size = Vector3(14.5, 11, 3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hthon"]
-transparency = 1
-albedo_color = Color(0, 1, 1, 0.231373)
-
-[sub_resource type="BoxMesh" id="BoxMesh_o5c1l"]
-material = SubResource("StandardMaterial3D_hthon")
-size = Vector3(14.5, 11, 3)
-
-[sub_resource type="Animation" id="Animation_k51uf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_o0biw"]
-resource_name = "attack"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7, 8, 9]
-}
-
-[sub_resource type="Animation" id="Animation_l1dep"]
-resource_name = "spider-walk"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xw54l"]
-_data = {
-"RESET": SubResource("Animation_k51uf"),
-"attack": SubResource("Animation_o0biw"),
-"walk": SubResource("Animation_l1dep")
-}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ti4pq"]
 size = Vector3(12.5, 11, 2)
@@ -75,15 +14,16 @@ size = Vector3(12.5, 11, 2)
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_m68i6")
 
-[node name="EnemyAttackTrigger" type="Area3D" parent="."]
+[node name="Hitbox" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyAttackTrigger"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
 shape = SubResource("BoxShape3D_675sg")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyAttackTrigger/CollisionShape3D"]
-visible = false
-mesh = SubResource("BoxMesh_o5c1l")
+[node name="DebugBoxMeshComponent" parent="Hitbox/CollisionShape3D" instance=ExtResource("3_wjuib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -2, 0)
+skeleton = NodePath("../..")
+display_debug_mesh = false
 
 [node name="Pivot" type="Node3D" parent="."]
 
@@ -93,29 +33,34 @@ shaded = true
 texture_filter = 0
 hframes = 10
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
-libraries = {
-"": SubResource("AnimationLibrary_xw54l")
-}
-
 [node name="EnemyCollisions" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
 shape = SubResource("BoxShape3D_ti4pq")
 
-[node name="EnemyHitbox" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
-shape = SubResource("BoxShape3D_ti4pq")
-
-[node name="DebugHealthBar" type="Label3D" parent="." groups=["debug_health"]]
+[node name="DebugHealthBar" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2171, 0)
 pixel_size = 0.1
 modulate = Color(1, 0.215686, 0.262745, 1)
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="area_entered" from="EnemyAttackTrigger" to="." method="_on_area_3d_area_entered"]
-[connection signal="area_exited" from="EnemyAttackTrigger" to="." method="_on_area_3d_area_exited"]
-[connection signal="area_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_area_entered"]
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_kso05")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
+shape = SubResource("BoxShape3D_675sg")
+
+[node name="DebugBoxMeshComponent" parent="HurtboxComponent/CollisionShape3D" instance=ExtResource("3_wjuib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -2, 0)
+skeleton = NodePath("../..")
+display_debug_mesh = false
+
+[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("debug_health_label")]
+script = ExtResource("3_bviwp")
+MAX_HEALTH = 200.0
+debug_health_label = NodePath("../DebugHealthBar")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

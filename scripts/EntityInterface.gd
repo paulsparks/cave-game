@@ -1,40 +1,10 @@
-class_name LivingEntity
-extends CharacterBody3D
-## A CharacterBody3D, but with some custom functionality needed for our game.
+extends Object
+class_name EntityInterface
+## Some custom methods needed for our game.
 
 var _original_node_positions: Array[Vector3]
 var _flipped_node_positions: Array[Vector3]
 var _flippable_nodes_have_been_set: bool
-
-## The entity's health.
-@export var health: float = 100
-## If true, the entity will have a health bar, as long as they are provided
-## with a Label3D in the "debug_health" group.
-@export var display_debug_health: bool
-
-## Will emit when the entity dies.
-signal is_dead
-
-func _ready():
-	_draw_debug_health()
-
-func _draw_debug_health():
-	if display_debug_health:
-		var labels = get_children().filter(func(x): return x.is_in_group("debug_health"))
-		if not labels.is_empty():
-			labels[0].text = "Health: %s" % health
-
-## Deal a specified amount of damage to the entity. Once the entity's health
-## has reached 0, the entity will be deleted from the scene, and will emit
-## the is_dead signal.
-func take_damage(amount):
-	health -= amount
-	
-	if health <= 0:
-		is_dead.emit()
-		queue_free()
-	
-	_draw_debug_health()
 
 ## Given one or more sprites and nodes, set whether or not the group of sprites
 ## and nodes are flipped. This means flipping the sprites horizontally and

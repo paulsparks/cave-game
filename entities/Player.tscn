@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdiuhay0s4hxu"]
+[gd_scene load_steps=11 format=3 uid="uid://cdiuhay0s4hxu"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_j224j"]
 [ext_resource type="Texture2D" uid="uid://dx7gns3v3pmbb" path="res://materials/player.png" id="2_r46v2"]
 [ext_resource type="PackedScene" uid="uid://dknpqbbbdei2t" path="res://entities/weapons/StarterSword.tscn" id="3_yli5v"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7qmrq"]
-size = Vector3(7, 13.5, 3)
+[ext_resource type="PackedScene" uid="uid://b6hoxlk4f2gue" path="res://CustomNodes/hurtbox_component.tscn" id="4_n1v27"]
+[ext_resource type="PackedScene" uid="uid://cvfike6ax6jys" path="res://CustomNodes/health_component.tscn" id="5_b7ubh"]
 
 [sub_resource type="Animation" id="Animation_k51uf"]
 length = 0.001
@@ -48,14 +47,11 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_ti4pq"]
 size = Vector3(7, 13.5, 3)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7qmrq"]
+size = Vector3(7, 13.5, 3)
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_j224j")
-
-[node name="PlayerHitbox" type="Area3D" parent="." groups=["player_hitbox"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.204513, 0)
-shape = SubResource("BoxShape3D_7qmrq")
 
 [node name="Pivot" type="Node3D" parent="."]
 
@@ -73,13 +69,22 @@ libraries = {
 
 [node name="StarterSword" parent="Pivot" instance=ExtResource("3_yli5v")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="PlayerCollisions" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.204513, 0)
 shape = SubResource("BoxShape3D_ti4pq")
 
-[node name="DebugHealthBar" type="Label3D" parent="." groups=["debug_health"]]
+[node name="DebugHealthBar" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2171, 0)
 pixel_size = 0.1
 modulate = Color(1, 0.215686, 0.262745, 1)
 
-[connection signal="area_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_area_entered"]
+[node name="HurtboxComponent2" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_n1v27")]
+health_component = NodePath("../HealthComponent")
+is_player = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.204513, 0)
+shape = SubResource("BoxShape3D_7qmrq")
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("debug_health_label") instance=ExtResource("5_b7ubh")]
+debug_health_label = NodePath("../DebugHealthBar")
