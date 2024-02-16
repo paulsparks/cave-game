@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://drr1fkw237gjt"]
+
+[ext_resource type="Script" path="res://scripts/DebugBoxMeshComponent.gd" id="1_iig86"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dirac"]
+transparency = 1
+albedo_color = Color(0.219608, 1, 1, 0.615686)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hylmx"]
+material = SubResource("StandardMaterial3D_dirac")
+
+[node name="DebugBoxMeshComponent" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_hylmx")
+script = ExtResource("1_iig86")

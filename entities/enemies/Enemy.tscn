@@ -1,18 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://i1ncxot38ce8"]
+[gd_scene load_steps=11 format=3 uid="uid://i1ncxot38ce8"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_m68i6"]
-[ext_resource type="Script" path="res://entities/HurtboxComponent.gd" id="2_qjyh8"]
+[ext_resource type="PackedScene" uid="uid://b6hoxlk4f2gue" path="res://CustomNodes/hurtbox_component.tscn" id="2_kso05"]
 [ext_resource type="Script" path="res://scripts/HealthComponent.gd" id="3_bviwp"]
+[ext_resource type="PackedScene" uid="uid://drr1fkw237gjt" path="res://CustomNodes/debug_box_mesh_component.tscn" id="3_wjuib"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_675sg"]
-size = Vector3(14.5, 11, 3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hthon"]
-transparency = 1
-albedo_color = Color(0, 1, 1, 0.231373)
-
-[sub_resource type="BoxMesh" id="BoxMesh_o5c1l"]
-material = SubResource("StandardMaterial3D_hthon")
 size = Vector3(14.5, 11, 3)
 
 [sub_resource type="Animation" id="Animation_k51uf"]
@@ -83,9 +76,10 @@ script = ExtResource("1_m68i6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
 shape = SubResource("BoxShape3D_675sg")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox/CollisionShape3D"]
-visible = false
-mesh = SubResource("BoxMesh_o5c1l")
+[node name="DebugBoxMeshComponent" parent="Hitbox/CollisionShape3D" instance=ExtResource("3_wjuib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -2, 0)
+skeleton = NodePath("../..")
+display_debug_mesh = false
 
 [node name="Pivot" type="Node3D" parent="."]
 
@@ -111,13 +105,17 @@ modulate = Color(1, 0.215686, 0.262745, 1)
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="HurtboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("health_component")]
-script = ExtResource("2_qjyh8")
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_kso05")]
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
-shape = SubResource("BoxShape3D_ti4pq")
+shape = SubResource("BoxShape3D_675sg")
+
+[node name="DebugBoxMeshComponent" parent="HurtboxComponent/CollisionShape3D" instance=ExtResource("3_wjuib")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -2, 0)
+skeleton = NodePath("../..")
+display_debug_mesh = false
 
 [node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("debug_health_label")]
 script = ExtResource("3_bviwp")

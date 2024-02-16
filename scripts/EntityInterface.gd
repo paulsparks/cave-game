@@ -34,5 +34,3 @@ func flip_nodes(nodes_to_flip: Array[Node3D], value: bool):
 		false:
 			for i in range(nodes_to_flip.size()):
 				nodes_to_flip[i].position = _original_node_positions[i]
-
-
