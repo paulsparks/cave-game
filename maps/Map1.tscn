@@ -99,7 +99,7 @@ shaded = true
 texture_filter = 0
 texture = ExtResource("5_eca12")
 
-[node name="Camera3D" parent="." instance=ExtResource("6_u4nug")]
+[node name="Camera" parent="." instance=ExtResource("6_u4nug")]
 transform = Transform3D(1, 0, 0, 0, 0.957319, 0.289032, 0, -0.289032, 0.957319, 11.5, 20.37, 51.191)
 player_path = NodePath("../Player")
 
