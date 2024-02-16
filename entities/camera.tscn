@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b722jprtgej1a"]
+
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="1_a2v3x"]
+
+[node name="Camera" type="Camera3D"]
+projection = 2
+fov = 67.7
+size = 12.746
+frustum_offset = Vector2(0.28, 0.16)
+near = 10.0
+script = ExtResource("1_a2v3x")
