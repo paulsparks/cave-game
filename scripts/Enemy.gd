@@ -4,9 +4,9 @@ extends CharacterBody3D
 @export var speed = 10
 @export var player: CharacterBody3D
 @export var damage_per_hit = 20
+@export var animation_player: AnimationPlayer
 
 @onready var sprite_3d = $Pivot/EnemySprite
-@onready var animation_player: AnimationPlayer = $Pivot/AnimationPlayer
 @onready var attack_trigger_shape = $Hitbox/CollisionShape3D
 @onready var collision_shape = $EnemyCollisions
 @onready var timer = $Timer

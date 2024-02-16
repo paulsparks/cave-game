@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://i1ncxot38ce8"]
+[gd_scene load_steps=7 format=3 uid="uid://i1ncxot38ce8"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_m68i6"]
 [ext_resource type="PackedScene" uid="uid://b6hoxlk4f2gue" path="res://CustomNodes/hurtbox_component.tscn" id="2_kso05"]
@@ -7,62 +7,6 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_675sg"]
 size = Vector3(14.5, 11, 3)
-
-[sub_resource type="Animation" id="Animation_k51uf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_o0biw"]
-resource_name = "attack"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7, 8, 9]
-}
-
-[sub_resource type="Animation" id="Animation_l1dep"]
-resource_name = "spider-walk"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xw54l"]
-_data = {
-"RESET": SubResource("Animation_k51uf"),
-"attack": SubResource("Animation_o0biw"),
-"walk": SubResource("Animation_l1dep")
-}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ti4pq"]
 size = Vector3(12.5, 11, 2)
@@ -88,11 +32,6 @@ pixel_size = 0.5
 shaded = true
 texture_filter = 0
 hframes = 10
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
-libraries = {
-"": SubResource("AnimationLibrary_xw54l")
-}
 
 [node name="EnemyCollisions" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
