@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://drr1fkw237gjt" path="res://CustomNodes/debug_box_mesh_component.tscn" id="3_wjuib"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_675sg"]
-size = Vector3(14.5, 11, 3)
+size = Vector3(14.5, 11, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ti4pq"]
-size = Vector3(12.5, 11, 2)
+size = Vector3(6, 11, 2)
 
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_m68i6")
@@ -60,6 +60,8 @@ display_debug_mesh = false
 script = ExtResource("3_bviwp")
 MAX_HEALTH = 200.0
 debug_health_label = NodePath("../DebugHealthBar")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]

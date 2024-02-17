@@ -11,11 +11,21 @@ extends CharacterBody3D
 @onready var collision_shape = $EnemyCollisions
 @onready var timer = $Timer
 @onready var hurtbox_shape = $HurtboxComponent/CollisionShape3D
+@onready var agent: NavigationAgent3D = $NavigationAgent3D
 
 var target_velocity = Vector3.ZERO
 var distance = Vector3.ZERO
 var hurtbox_being_attacked: HurtboxComponent
 var entity_interface: EntityInterface = EntityInterface.new()
+
+func _ready():
+	set_physics_process(false)
+	call_deferred("enemy_setup")
+	
+func enemy_setup():
+	# Wait for the first physics frame so the NavigationServer can sync.
+	await get_tree().physics_frame
+	set_physics_process(true)
 
 func _physics_process(_delta):
 	movement_logic()
@@ -25,7 +35,9 @@ func movement_logic():
 		var direction = Vector3.ZERO
 		var is_colliding = hurtbox_being_attacked != null
 		
-		distance = (player.global_position - global_position)
+		agent.set_target_position(player.global_position)
+		
+		distance = (agent.get_next_path_position() - global_position)
 		
 		if distance != Vector3.ZERO:
 			direction = distance.normalized()
