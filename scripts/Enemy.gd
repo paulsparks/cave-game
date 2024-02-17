@@ -18,8 +18,6 @@ var distance = Vector3.ZERO
 var hurtbox_being_attacked: HurtboxComponent
 var entity_interface: EntityInterface = EntityInterface.new()
 
-var test_int: int = 0
-
 func _ready():
 	set_physics_process(false)
 	call_deferred("enemy_setup")
@@ -66,7 +64,6 @@ func movement_logic():
 		# the player every time the player moves more than 3 meters.
 		var player_distance_from_target = (agent.get_target_position() - player.global_position).abs()
 		if player_distance_from_target.x > 3 or player_distance_from_target.z > 3:
-			test_int += 1
 			agent.set_target_position(player.global_position)
 	else:
 		animation_player.play("RESET")
