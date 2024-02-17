@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://lks5txwwg6wn"]
+
+[ext_resource type="Texture2D" uid="uid://bpvp85si1p4cv" path="res://materials/decorations/vase.png" id="1_kne3n"]
+[ext_resource type="Script" path="res://scripts/MobSpawner.gd" id="2_jwxpo"]
+[ext_resource type="PackedScene" uid="uid://cvfike6ax6jys" path="res://CustomNodes/health_component.tscn" id="4_e510p"]
+[ext_resource type="Script" path="res://scripts/HurtboxComponent.gd" id="5_lkgg7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bb25e"]
+size = Vector3(6.96143, 12.0784, 1)
+
+[node name="MobSpawner" type="Node3D"]
+script = ExtResource("2_jwxpo")
+
+[node name="Vase" type="Sprite3D" parent="."]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0, 0)
+shaded = true
+texture_filter = 0
+texture = ExtResource("1_kne3n")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="SpawnLocation" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 5)
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("debug_health_label") instance=ExtResource("4_e510p")]
+debug_health_label = NodePath("../DebugHealthBar")
+
+[node name="HurtboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("5_lkgg7")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.215088, -0.0478821, 0)
+shape = SubResource("BoxShape3D_bb25e")
+
+[node name="DebugHealthBar" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+pixel_size = 0.1
+modulate = Color(0.984314, 0.764706, 0.466667, 1)
+font_size = 16
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
