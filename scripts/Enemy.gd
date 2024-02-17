@@ -18,6 +18,8 @@ var distance = Vector3.ZERO
 var hurtbox_being_attacked: HurtboxComponent
 var entity_interface: EntityInterface = EntityInterface.new()
 
+var test_int: int = 0
+
 func _ready():
 	set_physics_process(false)
 	call_deferred("enemy_setup")
@@ -26,6 +28,7 @@ func enemy_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
 	await get_tree().physics_frame
 	set_physics_process(true)
+	agent.set_target_position(player.global_position)
 
 func _physics_process(_delta):
 	movement_logic()
@@ -34,8 +37,6 @@ func movement_logic():
 	if is_instance_valid(player):
 		var direction = Vector3.ZERO
 		var is_colliding = hurtbox_being_attacked != null
-		
-		agent.set_target_position(player.global_position)
 		
 		distance = (agent.get_next_path_position() - global_position)
 		
@@ -56,8 +57,17 @@ func movement_logic():
 		if not is_colliding:
 			animation_player.play("walk")
 
-		velocity = target_velocity
-		move_and_slide()
+		agent.set_velocity(target_velocity)
+		
+		# It's computationally expensive and causes stutters when updating target navigation
+		# position every frame. Instead, we update target position when player strays from
+		# previous target position by 3 units.
+		# To put it simply: we update the enemy's desired path to
+		# the player every time the player moves more than 3 meters.
+		var player_distance_from_target = (agent.get_target_position() - player.global_position).abs()
+		if player_distance_from_target.x > 3 or player_distance_from_target.z > 3:
+			test_int += 1
+			agent.set_target_position(player.global_position)
 	else:
 		animation_player.play("RESET")
 
@@ -77,3 +87,7 @@ func _on_timer_timeout():
 	attack.attack_damage = damage_per_hit
 	
 	hurtbox_being_attacked.damage(attack)
+
+func _on_navigation_agent_3d_velocity_computed(safe_velocity):
+	velocity = safe_velocity
+	move_and_slide()

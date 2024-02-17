@@ -1,15 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://i1ncxot38ce8"]
+[gd_scene load_steps=8 format=3 uid="uid://i1ncxot38ce8"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_m68i6"]
 [ext_resource type="PackedScene" uid="uid://b6hoxlk4f2gue" path="res://CustomNodes/hurtbox_component.tscn" id="2_kso05"]
 [ext_resource type="Script" path="res://scripts/HealthComponent.gd" id="3_bviwp"]
 [ext_resource type="PackedScene" uid="uid://drr1fkw237gjt" path="res://CustomNodes/debug_box_mesh_component.tscn" id="3_wjuib"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_675sg"]
-size = Vector3(14.5, 11, 5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_d31mi"]
+size = Vector3(8, 11, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ti4pq"]
 size = Vector3(6, 11, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_675sg"]
+size = Vector3(13, 11, 5)
 
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_m68i6")
@@ -17,8 +20,8 @@ script = ExtResource("1_m68i6")
 [node name="Hitbox" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
-shape = SubResource("BoxShape3D_675sg")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7, 2, 0)
+shape = SubResource("BoxShape3D_d31mi")
 
 [node name="DebugBoxMeshComponent" parent="Hitbox/CollisionShape3D" instance=ExtResource("3_wjuib")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -2, 0)
@@ -41,6 +44,7 @@ shape = SubResource("BoxShape3D_ti4pq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2171, 0)
 pixel_size = 0.1
 modulate = Color(1, 0.215686, 0.262745, 1)
+font_size = 18
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -62,7 +66,16 @@ MAX_HEALTH = 200.0
 debug_health_label = NodePath("../DebugHealthBar")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+radius = 4.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 13.0242, 4.80067)
+light_color = Color(0.913725, 0, 0.368627, 1)
+light_energy = 7.0
+spot_range = 21.7863
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
