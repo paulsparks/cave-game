@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://dosjss44h1rvv"]
+[gd_scene load_steps=20 format=3 uid="uid://dosjss44h1rvv"]
 
 [ext_resource type="PackedScene" uid="uid://cc65xperjs2gm" path="res://maps/testmap/testmap.glb" id="1_oukff"]
 [ext_resource type="PackedScene" uid="uid://cdiuhay0s4hxu" path="res://entities/Player.tscn" id="2_g8e3p"]
+[ext_resource type="PackedScene" uid="uid://bi6vv7ig7fs88" path="res://entities/enemies/Spider.tscn" id="3_7fuh0"]
 [ext_resource type="PackedScene" uid="uid://donua4uuvpdno" path="res://entities/Candle.tscn" id="4_btv2h"]
 [ext_resource type="Texture2D" uid="uid://oveicvp7yom3" path="res://materials/stone.png" id="5_cx5u7"]
 [ext_resource type="Texture2D" uid="uid://11uky37dke56" path="res://materials/decorations/metal_box.png" id="5_eca12"]
@@ -151,3 +152,4 @@ texture = ExtResource("11_b78dj")
 
 [node name="MobSpawner" parent="." instance=ExtResource("13_vjomq")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -6, 6, -22)
+mob_scene = ExtResource("3_7fuh0")
