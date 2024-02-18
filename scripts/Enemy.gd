@@ -28,8 +28,6 @@ func enemy_setup():
 	set_physics_process(true)
 	if is_instance_valid(player):
 		agent.set_target_position(player.global_position)
-	else:
-		agent.set_velocity(Vector3.ZERO)
 
 func _physics_process(_delta):
 	movement_logic()
