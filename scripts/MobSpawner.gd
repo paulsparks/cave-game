@@ -25,5 +25,5 @@ func _on_timer_timeout():
 		
 		mob_sprite.material_overlay = mob_sprite.material_overlay.duplicate()
 		
-		get_node("..").add_child(mob)
+		get_parent().add_child(mob)
 		mobs_on_map.push_back(mob)

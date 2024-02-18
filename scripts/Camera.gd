@@ -1,9 +1,9 @@
 extends Camera3D
 
 @export var player_path = NodePath() # Allows choosing the thing to follow in the inspector, aka the player.
-@export var acceleration_speed: Vector3 = Vector3(2, 0, 4) # How quickly the camera will exponentially speed up to the maximum speed defined below. Higher is faster.
-@export var max_speed: Vector3 = Vector3(60, 0, 60) # Camera's maximum speed in x, y, and z directions. In other words, the maximum speed the camera will hit when "catching up" to the player.
-@export var targeted_distance_from_player: Vector3 = Vector3(0, 0, 40) # Camera's distance from the player in Vector3(x, y, z) format. It's in meters I guess.
+@export var acceleration_speed: Vector3 = Vector3(2, 40, 4) # How quickly the camera will exponentially speed up to the maximum speed defined below. Higher is faster.
+@export var max_speed: Vector3 = Vector3(60, 60, 60) # Camera's maximum speed in x, y, and z directions. In other words, the maximum speed the camera will hit when "catching up" to the player.
+@export var targeted_distance_from_player: Vector3 = Vector3(0, 13.5, 40) # Camera's distance from the player in Vector3(x, y, z) format. It's in meters I guess.
 
 @export var fixed_rotation: Vector3 = Vector3(-0.25, 0, 0) # The fixed rotation for the x and z planes. Any inputted y is ignored.
 @export var max_rotation: float = 0.025 # Maximum y rotation in radians, in both negative and positive directions.
