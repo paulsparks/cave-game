@@ -1,9 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://lks5txwwg6wn"]
+[gd_scene load_steps=7 format=3 uid="uid://lks5txwwg6wn"]
 
 [ext_resource type="Texture2D" uid="uid://bpvp85si1p4cv" path="res://materials/decorations/vase.png" id="1_kne3n"]
 [ext_resource type="Script" path="res://scripts/MobSpawner.gd" id="2_jwxpo"]
 [ext_resource type="PackedScene" uid="uid://cvfike6ax6jys" path="res://CustomNodes/health_component.tscn" id="4_e510p"]
 [ext_resource type="Script" path="res://scripts/HurtboxComponent.gd" id="5_lkgg7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cca5"]
+render_priority = 1
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = ExtResource("1_kne3n")
+emission_enabled = true
+emission = Color(1, 0, 0.0156863, 1)
+texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bb25e"]
 size = Vector3(6.96143, 12.0784, 1)
@@ -12,7 +21,8 @@ size = Vector3(6.96143, 12.0784, 1)
 script = ExtResource("2_jwxpo")
 
 [node name="Vase" type="Sprite3D" parent="."]
-transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_0cca5")
+pixel_size = 0.5
 shaded = true
 texture_filter = 0
 texture = ExtResource("1_kne3n")

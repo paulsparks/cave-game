@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://i1ncxot38ce8"]
+[gd_scene load_steps=9 format=3 uid="uid://i1ncxot38ce8"]
 
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_m68i6"]
 [ext_resource type="PackedScene" uid="uid://b6hoxlk4f2gue" path="res://CustomNodes/hurtbox_component.tscn" id="2_kso05"]
@@ -7,6 +7,14 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d31mi"]
 size = Vector3(8, 11, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgn7a"]
+render_priority = 1
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+emission_enabled = true
+emission = Color(1, 0, 0.0156863, 1)
+texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ti4pq"]
 size = Vector3(6, 11, 2)
@@ -28,9 +36,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -2, 0)
 skeleton = NodePath("../..")
 display_debug_mesh = false
 
-[node name="Pivot" type="Node3D" parent="."]
-
-[node name="EnemySprite" type="Sprite3D" parent="Pivot"]
+[node name="EnemySprite" type="Sprite3D" parent="."]
+material_overlay = SubResource("StandardMaterial3D_dgn7a")
 pixel_size = 0.5
 shaded = true
 texture_filter = 0
