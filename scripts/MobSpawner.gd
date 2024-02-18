@@ -19,8 +19,11 @@ func _on_timer_timeout():
 		var mob: Enemy = mob_scene.instantiate()
 		
 		mob.player = get_node_or_null("../Player")
+		var mob_sprite = mob.get_node("EnemySprite")
 
 		mob.set_position(spawn_location.global_position)
+		
+		mob_sprite.material_overlay = mob_sprite.material_overlay.duplicate()
 		
 		get_node("..").add_child(mob)
 		mobs_on_map.push_back(mob)
