@@ -96,9 +96,8 @@ is_player = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.204513, 0)
 shape = SubResource("BoxShape3D_7qmrq")
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("debug_health_label") instance=ExtResource("5_b7ubh")]
+[node name="HealthComponent" parent="." instance=ExtResource("5_b7ubh")]
 MAX_HEALTH = 500.0
-debug_health_label = NodePath("../DebugHealthBar")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 9.3141, 0.375)

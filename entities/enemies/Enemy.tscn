@@ -67,10 +67,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -2, 0)
 skeleton = NodePath("../..")
 display_debug_mesh = false
 
-[node name="HealthComponent" type="Node" parent="." node_paths=PackedStringArray("debug_health_label")]
+[node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_bviwp")
 MAX_HEALTH = 200.0
-debug_health_label = NodePath("../DebugHealthBar")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true

@@ -33,8 +33,7 @@ autostart = true
 [node name="SpawnLocation" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 5)
 
-[node name="HealthComponent" parent="." node_paths=PackedStringArray("debug_health_label") instance=ExtResource("4_e510p")]
-debug_health_label = NodePath("../DebugHealthBar")
+[node name="HealthComponent" parent="." instance=ExtResource("4_e510p")]
 
 [node name="HurtboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("health_component")]
 script = ExtResource("5_lkgg7")
@@ -45,7 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.215088, -0.0478821, 0)
 shape = SubResource("BoxShape3D_bb25e")
 
 [node name="DebugHealthBar" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
 pixel_size = 0.1
 modulate = Color(0.984314, 0.764706, 0.466667, 1)
 font_size = 16
