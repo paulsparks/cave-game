@@ -2,10 +2,10 @@ extends CharacterBody3D
 
 @export var speed = 30
 
-@onready var sprite_3d = $Pivot/PlayerSprite
-@onready var animation_player: AnimationPlayer = $Pivot/AnimationPlayer
-@onready var weapon_sprite_3d: Node3D = $Pivot/StarterSword/WeaponSprite
-@onready var weapon_attack_collider_shape: Node3D = $Pivot/StarterSword/Hitbox/CollisionShape3D
+@onready var sprite_3d = $PlayerSprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var weapon_sprite_3d: Node3D = $StarterSword/WeaponSprite
+@onready var weapon_attack_collider_shape: Node3D = $StarterSword/Hitbox/CollisionShape3D
 
 var target_velocity = Vector3.ZERO
 var entity_interface: EntityInterface = EntityInterface.new()

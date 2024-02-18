@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdiuhay0s4hxu"]
+[gd_scene load_steps=12 format=3 uid="uid://cdiuhay0s4hxu"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_j224j"]
 [ext_resource type="Texture2D" uid="uid://dx7gns3v3pmbb" path="res://materials/player.png" id="2_r46v2"]
@@ -6,12 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://b6hoxlk4f2gue" path="res://CustomNodes/hurtbox_component.tscn" id="4_n1v27"]
 [ext_resource type="PackedScene" uid="uid://cvfike6ax6jys" path="res://CustomNodes/health_component.tscn" id="5_b7ubh"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81olm"]
+render_priority = 1
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = ExtResource("2_r46v2")
+emission_enabled = true
+emission = Color(1, 0, 0.0156863, 1)
+texture_filter = 0
+
 [sub_resource type="Animation" id="Animation_k51uf"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("../PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,7 +37,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("../PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -53,21 +62,21 @@ size = Vector3(7, 13.5, 3)
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_j224j")
 
-[node name="Pivot" type="Node3D" parent="."]
-
-[node name="PlayerSprite" type="Sprite3D" parent="Pivot"]
+[node name="PlayerSprite" type="Sprite3D" parent="."]
+material_overlay = SubResource("StandardMaterial3D_81olm")
 pixel_size = 0.5
 shaded = true
 texture_filter = 0
 texture = ExtResource("2_r46v2")
 hframes = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../PlayerSprite")
 libraries = {
 "": SubResource("AnimationLibrary_xw54l")
 }
 
-[node name="StarterSword" parent="Pivot" instance=ExtResource("3_yli5v")]
+[node name="StarterSword" parent="." instance=ExtResource("3_yli5v")]
 
 [node name="PlayerCollisions" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.204513, 0)

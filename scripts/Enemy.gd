@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var damage_per_hit = 20
 @export var animation_player: AnimationPlayer
 
-@onready var sprite_3d = $Pivot/EnemySprite
+@onready var sprite_3d = $EnemySprite
 @onready var attack_trigger_shape = $Hitbox/CollisionShape3D
 @onready var collision_shape = $EnemyCollisions
 @onready var timer = $Timer
@@ -26,7 +26,8 @@ func enemy_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
 	await get_tree().physics_frame
 	set_physics_process(true)
-	agent.set_target_position(player.global_position)
+	if is_instance_valid(player):
+		agent.set_target_position(player.global_position)
 
 func _physics_process(_delta):
 	movement_logic()
@@ -66,6 +67,7 @@ func movement_logic():
 		if player_distance_from_target.x > 3 or player_distance_from_target.z > 3:
 			agent.set_target_position(player.global_position)
 	else:
+		agent.set_velocity(Vector3.ZERO)
 		animation_player.play("RESET")
 
 func _on_hitbox_area_entered(area):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bi6vv7ig7fs88"]
+[gd_scene load_steps=8 format=3 uid="uid://bi6vv7ig7fs88"]
 
 [ext_resource type="PackedScene" uid="uid://i1ncxot38ce8" path="res://entities/enemies/Enemy.tscn" id="1_koct8"]
 [ext_resource type="Texture2D" uid="uid://kqd3l070okm6" path="res://materials/spider.png" id="2_8swdn"]
@@ -59,13 +59,23 @@ _data = {
 "walk": SubResource("Animation_l1dep")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nt150"]
+render_priority = 1
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = ExtResource("2_8swdn")
+emission_enabled = true
+emission = Color(1, 0, 0.0156863, 1)
+texture_filter = 0
+
 [node name="Spider" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_koct8")]
-animation_player = NodePath("Pivot/AnimationPlayer")
+animation_player = NodePath("AnimationPlayer")
 
-[node name="EnemySprite" parent="Pivot" index="0"]
-texture = ExtResource("2_8swdn")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot" index="1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
 "": SubResource("AnimationLibrary_xw54l")
 }
+
+[node name="EnemySprite" parent="." index="2"]
+material_overlay = SubResource("StandardMaterial3D_nt150")
+texture = ExtResource("2_8swdn")
