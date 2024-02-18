@@ -6,11 +6,13 @@ extends Node3D
 
 @onready var timer = $Timer
 @onready var spawn_location = $SpawnLocation
+@onready var sprite = $Vase
 
 var mobs_on_map: Array[Enemy]
 
 func _ready():
 	timer.set_wait_time(spawn_time)
+	sprite.material_overlay = sprite.material_overlay.duplicate()
 
 func _on_timer_timeout():
 	mobs_on_map = mobs_on_map.filter(func(mob): return is_instance_valid(mob))

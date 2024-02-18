@@ -153,3 +153,7 @@ texture = ExtResource("11_b78dj")
 [node name="MobSpawner" parent="." instance=ExtResource("13_vjomq")]
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -6, 7, -22)
 mob_scene = ExtResource("3_7fuh0")
+
+[node name="MobSpawner2" parent="." instance=ExtResource("13_vjomq")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 29, 7, 2)
+mob_scene = ExtResource("3_7fuh0")
