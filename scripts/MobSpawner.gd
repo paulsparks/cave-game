@@ -22,5 +22,5 @@ func _on_timer_timeout():
 
 		mob.set_position(spawn_location.global_position)
 		
-		get_node("..").add_child(mob)
+		get_parent().add_child(mob)
 		mobs_on_map.push_back(mob)

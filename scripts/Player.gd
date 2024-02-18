@@ -1,16 +1,20 @@
 extends CharacterBody3D
 
 @export var speed = 30
+@export var gravity: float = 50
+@export var gravity_max: float = 100
 
 @onready var sprite_3d = $PlayerSprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var weapon_sprite_3d: Node3D = $StarterSword/WeaponSprite
 @onready var weapon_attack_collider_shape: Node3D = $StarterSword/Hitbox/CollisionShape3D
 
+
+
 var target_velocity = Vector3.ZERO
 var entity_interface: EntityInterface = EntityInterface.new()
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	var direction = Vector3.ZERO
 
 	if Input.is_action_pressed("move_right"):
@@ -29,6 +33,12 @@ func _physics_process(_delta):
 
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
+	
+	if is_on_floor():
+		target_velocity.y = 0
+	else:
+		target_velocity.y = clamp(target_velocity.y - delta*gravity, -gravity_max, gravity_max)
+
 	
 	velocity = target_velocity
 	
