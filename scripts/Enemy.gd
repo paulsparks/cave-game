@@ -29,7 +29,7 @@ func enemy_setup():
 	if is_instance_valid(player):
 		agent.set_target_position(player.global_position)
 	else:
-		agent.set_target_position(Vector3.ZERO)
+		agent.set_velocity(Vector3.ZERO)
 
 func _physics_process(_delta):
 	movement_logic()
@@ -69,6 +69,7 @@ func movement_logic():
 		if player_distance_from_target.x > 3 or player_distance_from_target.z > 3:
 			agent.set_target_position(player.global_position)
 	else:
+		agent.set_velocity(Vector3.ZERO)
 		animation_player.play("RESET")
 
 func _on_hitbox_area_entered(area):
