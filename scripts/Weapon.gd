@@ -1,7 +1,7 @@
 class_name Weapon
 extends Node3D
 
-@export var attack_speed: float = .3
+@export var attack_speed: float = .4
 @export var attack_damage: float = 34
 
 @onready var animation_player = $AnimationPlayer

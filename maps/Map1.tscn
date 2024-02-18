@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dosjss44h1rvv"]
+[gd_scene load_steps=21 format=3 uid="uid://dosjss44h1rvv"]
 
 [ext_resource type="PackedScene" uid="uid://cc65xperjs2gm" path="res://maps/testmap/testmap.glb" id="1_oukff"]
 [ext_resource type="PackedScene" uid="uid://cdiuhay0s4hxu" path="res://entities/Player.tscn" id="2_g8e3p"]
@@ -38,6 +38,22 @@ size = Vector3(20, 40, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0w7f3"]
 size = Vector3(50, 1, 70)
+
+[sub_resource type="Environment" id="Environment_gq0t3"]
+tonemap_mode = 2
+tonemap_exposure = 1.3
+ssil_radius = 7.01
+ssil_intensity = 16.0
+ssil_sharpness = 1.0
+sdfgi_enabled = true
+sdfgi_read_sky_light = false
+sdfgi_cascades = 2
+glow_enabled = true
+glow_blend_mode = 1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.4, 0.12549, 0.494118, 1)
+volumetric_fog_emission = Color(0.329412, 0, 0.207843, 1)
 
 [node name="Map1" type="Node"]
 
@@ -157,3 +173,6 @@ mob_scene = ExtResource("3_7fuh0")
 [node name="MobSpawner2" parent="." instance=ExtResource("13_vjomq")]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 29, 7, 2)
 mob_scene = ExtResource("3_7fuh0")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gq0t3")
