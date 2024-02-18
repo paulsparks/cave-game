@@ -5,6 +5,8 @@ extends CharacterBody3D
 @export var player: CharacterBody3D
 @export var damage_per_hit = 20
 @export var animation_player: AnimationPlayer
+@export var gravity: float = 50
+@export var gravity_max: float = 100
 
 @onready var sprite_3d = $Pivot/EnemySprite
 @onready var attack_trigger_shape = $Hitbox/CollisionShape3D
@@ -28,10 +30,10 @@ func enemy_setup():
 	set_physics_process(true)
 	agent.set_target_position(player.global_position)
 
-func _physics_process(_delta):
-	movement_logic()
+func _physics_process(delta):
+	movement_logic(delta)
 
-func movement_logic():
+func movement_logic(delta):
 	if is_instance_valid(player):
 		var direction = Vector3.ZERO
 		var is_colliding = hurtbox_being_attacked != null
@@ -46,15 +48,16 @@ func movement_logic():
 		else:
 			entity_interface.flip_entity([attack_trigger_shape, collision_shape, hurtbox_shape], [sprite_3d], true)
 
-		if !is_colliding:
+		if not is_colliding:
 			target_velocity.x = direction.x * speed
 			target_velocity.z = direction.z * speed
+			animation_player.play("walk")
 		else:
 			target_velocity = Vector3.ZERO
-			
-		if not is_colliding:
-			animation_player.play("walk")
-
+		if is_on_floor(): # Gravity.
+			target_velocity.y = 0
+		else:
+			target_velocity.y = clamp(target_velocity.y - delta*gravity, -gravity_max, gravity_max)
 		agent.set_velocity(target_velocity)
 		
 		# It's computationally expensive and causes stutters when updating target navigation
