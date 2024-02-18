@@ -18,7 +18,8 @@ func _on_timer_timeout():
 	if mobs_on_map.size() < max_mobs:
 		var mob: Enemy = mob_scene.instantiate()
 		
-		mob.player = get_node("../Player")
+		mob.player = get_node_or_null("../Player")
+
 		mob.set_position(spawn_location.global_position)
 		
 		get_node("..").add_child(mob)
