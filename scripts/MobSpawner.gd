@@ -8,7 +8,7 @@ extends Node3D
 @onready var spawn_location = $SpawnLocation
 @onready var sprite = $Vase
 
-var mobs_on_map: Array[Enemy]
+var mobs_on_map: Array[CharacterBody3D]
 
 func _ready():
 	timer.set_wait_time(spawn_time)
@@ -18,9 +18,8 @@ func _on_timer_timeout():
 	mobs_on_map = mobs_on_map.filter(func(mob): return is_instance_valid(mob))
 	
 	if mobs_on_map.size() < max_mobs:
-		var mob: Enemy = mob_scene.instantiate()
+		var mob: CharacterBody3D = mob_scene.instantiate()
 		
-		mob.player = get_node_or_null("../Player")
 		var mob_sprite = mob.get_node("EnemySprite")
 
 		mob.set_position(spawn_location.global_position)
