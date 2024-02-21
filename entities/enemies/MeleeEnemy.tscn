@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://i1ncxot38ce8"]
+[gd_scene load_steps=11 format=3 uid="uid://i1ncxot38ce8"]
 
-[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_m68i6"]
-[ext_resource type="PackedScene" uid="uid://b6hoxlk4f2gue" path="res://CustomNodes/hurtbox_component.tscn" id="2_kso05"]
-[ext_resource type="Script" path="res://scripts/HealthComponent.gd" id="3_bviwp"]
-[ext_resource type="PackedScene" uid="uid://drr1fkw237gjt" path="res://CustomNodes/debug_box_mesh_component.tscn" id="3_wjuib"]
+[ext_resource type="Script" path="res://scripts/MeleeEnemy.gd" id="1_nsn2j"]
+[ext_resource type="PackedScene" uid="uid://drr1fkw237gjt" path="res://CustomNodes/debug_box_mesh_component.tscn" id="2_nq8lw"]
+[ext_resource type="PackedScene" uid="uid://b6hoxlk4f2gue" path="res://CustomNodes/hurtbox_component.tscn" id="3_xsmsh"]
+[ext_resource type="Script" path="res://scripts/HealthComponent.gd" id="4_4n3rd"]
+[ext_resource type="PackedScene" uid="uid://twwmyixroiqj" path="res://CustomNodes/navigation_movement_component.tscn" id="5_u34fw"]
+[ext_resource type="Script" path="res://scripts/MovementAnimationComponent.gd" id="6_ks6fv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d31mi"]
 size = Vector3(8, 11, 5)
@@ -22,8 +24,8 @@ size = Vector3(6, 11, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_675sg"]
 size = Vector3(13, 11, 5)
 
-[node name="Enemy" type="CharacterBody3D"]
-script = ExtResource("1_m68i6")
+[node name="MeleeEnemy" type="CharacterBody3D"]
+script = ExtResource("1_nsn2j")
 
 [node name="Hitbox" type="Area3D" parent="."]
 
@@ -31,7 +33,7 @@ script = ExtResource("1_m68i6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7, 2, 0)
 shape = SubResource("BoxShape3D_d31mi")
 
-[node name="DebugBoxMeshComponent" parent="Hitbox/CollisionShape3D" instance=ExtResource("3_wjuib")]
+[node name="DebugBoxMeshComponent" parent="Hitbox/CollisionShape3D" instance=ExtResource("2_nq8lw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -2, 0)
 skeleton = NodePath("../..")
 display_debug_mesh = false
@@ -55,20 +57,20 @@ font_size = 18
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_kso05")]
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_xsmsh")]
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 2, 0)
 shape = SubResource("BoxShape3D_675sg")
 
-[node name="DebugBoxMeshComponent" parent="HurtboxComponent/CollisionShape3D" instance=ExtResource("3_wjuib")]
+[node name="DebugBoxMeshComponent" parent="HurtboxComponent/CollisionShape3D" instance=ExtResource("2_nq8lw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -2, 0)
 skeleton = NodePath("../..")
 display_debug_mesh = false
 
 [node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("3_bviwp")
+script = ExtResource("4_4n3rd")
 MAX_HEALTH = 200.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -80,6 +82,14 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 13.0242
 light_color = Color(0.913725, 0, 0.368627, 1)
 light_energy = 7.0
 spot_range = 21.7863
+
+[node name="NavigationMovementComponent" parent="." node_paths=PackedStringArray("agent", "enemy") instance=ExtResource("5_u34fw")]
+agent = NodePath("../NavigationAgent3D")
+enemy = NodePath("..")
+
+[node name="MovementAnimationComponent" type="Node" parent="." node_paths=PackedStringArray("navigation_movement_component")]
+script = ExtResource("6_ks6fv")
+navigation_movement_component = NodePath("../NavigationMovementComponent")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="Hitbox" to="." method="_on_hitbox_area_exited"]

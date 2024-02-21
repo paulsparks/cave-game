@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bi6vv7ig7fs88"]
 
-[ext_resource type="PackedScene" uid="uid://i1ncxot38ce8" path="res://entities/enemies/Enemy.tscn" id="1_koct8"]
+[ext_resource type="PackedScene" uid="uid://i1ncxot38ce8" path="res://entities/enemies/MeleeEnemy.tscn" id="1_5t7ov"]
 [ext_resource type="Texture2D" uid="uid://kqd3l070okm6" path="res://materials/spider.png" id="2_8swdn"]
 
 [sub_resource type="Animation" id="Animation_k51uf"]
@@ -68,7 +68,7 @@ emission_enabled = true
 emission = Color(1, 0, 0.0156863, 1)
 texture_filter = 0
 
-[node name="Spider" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_koct8")]
+[node name="Spider" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_5t7ov")]
 animation_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
@@ -79,3 +79,6 @@ libraries = {
 [node name="EnemySprite" parent="." index="2"]
 material_overlay = SubResource("StandardMaterial3D_nt150")
 texture = ExtResource("2_8swdn")
+
+[node name="MovementAnimationComponent" parent="." index="11" node_paths=PackedStringArray("animation_player")]
+animation_player = NodePath("../AnimationPlayer")
