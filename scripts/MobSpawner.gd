@@ -17,7 +17,7 @@ func _ready():
 	
 	sprite.material_overlay = sprite.material_overlay.duplicate()
 
-func _on_timer_timeout():	
+func _on_timer_timeout():
 	mobs_on_map = mobs_on_map.filter(func(mob): return is_instance_valid(mob))
 	
 	if mobs_on_map.size() < max_mobs:
