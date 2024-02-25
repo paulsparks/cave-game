@@ -80,5 +80,8 @@ libraries = {
 material_overlay = SubResource("StandardMaterial3D_nt150")
 texture = ExtResource("2_8swdn")
 
+[node name="HealthComponent" parent="." index="7"]
+MAX_HEALTH = 130.0
+
 [node name="MovementAnimationComponent" parent="." index="11" node_paths=PackedStringArray("animation_player")]
 animation_player = NodePath("../AnimationPlayer")

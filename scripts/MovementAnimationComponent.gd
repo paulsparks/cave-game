@@ -4,6 +4,8 @@ extends Node
 @export var animation_player: AnimationPlayer
 @export var navigation_movement_component: NavigationMovementComponent
 
+var entity_interface: EntityInterface = EntityInterface.new()
+
 func _physics_process(_delta):
 	handle_sprite_flipping()
 	handle_animations()
@@ -12,11 +14,9 @@ func handle_sprite_flipping():
 	if not is_instance_valid(navigation_movement_component.targeted_player):
 		return
 
-	var entity_interface: EntityInterface = EntityInterface.new()
-	
-	var attack_trigger_shape = navigation_movement_component.enemy.get_node("Hitbox")
+	var attack_trigger_shape = navigation_movement_component.enemy.get_node("Hitbox/CollisionShape3D")
 	var collision_shape = navigation_movement_component.enemy.get_node("EnemyCollisions")
-	var hurtbox_shape = navigation_movement_component.enemy.get_node("HurtboxComponent")
+	var hurtbox_shape = navigation_movement_component.enemy.get_node("HurtboxComponent/CollisionShape3D")
 	var sprite_3d = navigation_movement_component.enemy.get_node("EnemySprite")
 	
 	if navigation_movement_component.direction_to_player.x > 0:
