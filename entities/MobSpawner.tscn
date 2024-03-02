@@ -28,7 +28,6 @@ texture_filter = 0
 texture = ExtResource("1_kne3n")
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true
 
 [node name="SpawnLocation" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 5)

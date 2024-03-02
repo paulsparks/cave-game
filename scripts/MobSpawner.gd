@@ -3,6 +3,7 @@ extends Node3D
 @export var mob_scene: PackedScene
 @export var spawn_time: int = 5
 @export var max_mobs: int = 3
+@export var disable_spawning: bool
 
 @onready var timer = $Timer
 @onready var spawn_location = $SpawnLocation
@@ -11,7 +12,9 @@ extends Node3D
 var mobs_on_map: Array[CharacterBody3D]
 
 func _ready():
-	timer.set_wait_time(spawn_time)
+	if not disable_spawning:
+		timer.start(spawn_time)
+	
 	sprite.material_overlay = sprite.material_overlay.duplicate()
 
 func _on_timer_timeout():

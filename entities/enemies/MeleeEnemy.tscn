@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b6hoxlk4f2gue" path="res://CustomNodes/hurtbox_component.tscn" id="3_xsmsh"]
 [ext_resource type="Script" path="res://scripts/HealthComponent.gd" id="4_4n3rd"]
 [ext_resource type="PackedScene" uid="uid://twwmyixroiqj" path="res://CustomNodes/navigation_movement_component.tscn" id="5_u34fw"]
-[ext_resource type="Script" path="res://scripts/MovementAnimationComponent.gd" id="6_ks6fv"]
+[ext_resource type="PackedScene" uid="uid://bgr8j2p2vvwtk" path="res://CustomNodes/movement_animation_component.tscn" id="6_aka4d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d31mi"]
 size = Vector3(8, 11, 5)
@@ -87,8 +87,7 @@ spot_range = 21.7863
 agent = NodePath("../NavigationAgent3D")
 enemy = NodePath("..")
 
-[node name="MovementAnimationComponent" type="Node" parent="." node_paths=PackedStringArray("navigation_movement_component")]
-script = ExtResource("6_ks6fv")
+[node name="MovementAnimationComponent" parent="." node_paths=PackedStringArray("navigation_movement_component") instance=ExtResource("6_aka4d")]
 navigation_movement_component = NodePath("../NavigationMovementComponent")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

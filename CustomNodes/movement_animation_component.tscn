@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgr8j2p2vvwtk"]
+
+[ext_resource type="Script" path="res://scripts/MovementAnimationComponent.gd" id="1_gocfo"]
+
+[node name="MovementAnimationComponent" type="Node" node_paths=PackedStringArray("navigation_movement_component")]
+script = ExtResource("1_gocfo")
+navigation_movement_component = NodePath("")
