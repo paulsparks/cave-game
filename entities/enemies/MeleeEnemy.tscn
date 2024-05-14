@@ -26,6 +26,7 @@ size = Vector3(13, 11, 5)
 
 [node name="MeleeEnemy" type="CharacterBody3D"]
 script = ExtResource("1_nsn2j")
+enable_knockback = true
 
 [node name="Hitbox" type="Area3D" parent="."]
 
@@ -36,7 +37,6 @@ shape = SubResource("BoxShape3D_d31mi")
 [node name="DebugBoxMeshComponent" parent="Hitbox/CollisionShape3D" instance=ExtResource("2_nq8lw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, -2, 0)
 skeleton = NodePath("../..")
-display_debug_mesh = false
 
 [node name="EnemySprite" type="Sprite3D" parent="."]
 material_overlay = SubResource("StandardMaterial3D_dgn7a")
