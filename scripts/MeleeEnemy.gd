@@ -2,6 +2,7 @@ class_name MeleeEnemy
 extends CharacterBody3D
 
 @export var damage_per_hit = 20
+@export var xp_value = 200
 @export var animation_player: AnimationPlayer
 @export var max_gravity_speed: float = 80
 @export var enable_knockback = false
@@ -18,6 +19,9 @@ var hurtbox_this_is_attacking: HurtboxComponent
 var is_attacking: bool
 var target_velocity: Vector3 = Vector3.ZERO
 var multiplier = heaviness
+
+func _exit_tree():
+	Globals.increment_xp(xp_value)
 
 func _physics_process(_delta):
 	handle_melee_attacks()
