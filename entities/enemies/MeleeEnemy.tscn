@@ -26,6 +26,7 @@ size = Vector3(13, 11, 5)
 
 [node name="MeleeEnemy" type="CharacterBody3D"]
 script = ExtResource("1_nsn2j")
+enable_knockback = true
 
 [node name="Hitbox" type="Area3D" parent="."]
 

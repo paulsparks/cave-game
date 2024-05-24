@@ -3,6 +3,7 @@ extends Node3D
 
 @export var attack_speed: float = .4
 @export var attack_damage: float = 34
+@export var knockback_horizontal: float = 80 
 
 @onready var animation_player = $AnimationPlayer
 @onready var collision_shape = $Hitbox/CollisionShape3D
@@ -28,6 +29,9 @@ func _on_hitbox_area_exited(area):
 func _on_animation_player_animation_started(anim_name):
 	if anim_name == "attack" and not hurtboxes_being_attacked.is_empty():
 		var attack = Attack.new()
+		attack.knockback_horizontal = knockback_horizontal
+		attack.knockback_vertical = 100
 		attack.attack_damage = attack_damage
+		attack.attack_position = global_position
 		for hurtbox in hurtboxes_being_attacked:
 			hurtbox.damage(attack)

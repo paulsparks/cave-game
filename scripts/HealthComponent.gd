@@ -12,11 +12,11 @@ func _ready():
 
 ## Deal a specified amount of damage to the entity. Once the entity's health
 ## has reached 0, the entity will be deleted from the scene.
-func damage(attack):
+func damage(attack_damage):
 	var sprite: Sprite3D = get_parent().get_children().filter(func(child): return child is Sprite3D)[0]
 	var tween = _animate_hit(sprite)
 	
-	health -= attack.attack_damage
+	health -= attack_damage
 	
 	if health <= 0:
 		tween.stop()
