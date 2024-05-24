@@ -73,10 +73,10 @@ func move_enemy():
 		
 	move_and_slide()
 
-func knockback(attack_position: Vector3, knockback_obj: Knockback):
+func knockback(attack: Attack):
 
-	var knockback_speed: Vector3 = Vector3(knockback_obj.horizontal, knockback_obj.vertical, knockback_obj.horizontal)
-	var knockback_direction: Vector3 = attack_position.direction_to(global_position)
+	var knockback_speed: Vector3 = Vector3(attack.knockback_horizontal, attack.knockback_vertical, attack.knockback_horizontal)
+	var knockback_direction: Vector3 = attack.attack_position.direction_to(global_position)
 	knockback_direction.y = 1
 	knockback_velocity = knockback_direction * knockback_speed
 	

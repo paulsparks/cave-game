@@ -12,5 +12,5 @@ func damage(attack: Attack):
 		health_component.damage(attack.attack_damage)
 	
 	if parent is MeleeEnemy:
-		if attack.knockback and parent.enable_knockback:
-			parent.knockback(attack.attack_position, attack.knockback)
+		if (attack.knockback_horizontal + attack.knockback_vertical) > 0 and parent.enable_knockback:
+			parent.knockback(attack)

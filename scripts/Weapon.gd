@@ -29,10 +29,8 @@ func _on_hitbox_area_exited(area):
 func _on_animation_player_animation_started(anim_name):
 	if anim_name == "attack" and not hurtboxes_being_attacked.is_empty():
 		var attack = Attack.new()
-		var knockback = Knockback.new()
-		knockback.horizontal = knockback_horizontal
-		knockback.vertical = 100
-		attack.knockback = knockback
+		attack.knockback_horizontal = knockback_horizontal
+		attack.knockback_vertical = 100
 		attack.attack_damage = attack_damage
 		attack.attack_position = global_position
 		for hurtbox in hurtboxes_being_attacked:
