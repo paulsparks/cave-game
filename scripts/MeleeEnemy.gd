@@ -2,6 +2,7 @@ class_name MeleeEnemy
 extends CharacterBody3D
 
 @export var damage_per_hit = 20
+@export var xp_value = 200
 @export var animation_player: AnimationPlayer
 
 @onready var timer = $Timer
@@ -9,6 +10,9 @@ extends CharacterBody3D
 
 var hurtbox_this_is_attacking: HurtboxComponent
 var is_attacking: bool
+
+func _exit_tree():
+	Globals.increment_xp(xp_value)
 
 func _physics_process(_delta):
 	handle_melee_attacks()
