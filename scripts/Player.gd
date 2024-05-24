@@ -7,6 +7,7 @@ extends CharacterBody3D
 
 @onready var sprite_3d = $PlayerSprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var weapon = $StarterSword
 @onready var weapon_sprite_3d: Node3D = $StarterSword/WeaponSprite
 @onready var weapon_attack_collider_shape: Node3D = $StarterSword/Hitbox/CollisionShape3D
 
@@ -14,6 +15,9 @@ extends CharacterBody3D
 
 var target_velocity = Vector3.ZERO
 var entity_interface: EntityInterface = EntityInterface.new()
+
+func _ready():
+	Globals.player = self
 
 func _physics_process(delta):
 	var direction = Vector3.ZERO
