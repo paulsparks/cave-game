@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq60uwultn4e2"]
+
+[ext_resource type="PackedScene" uid="uid://bt6gtt5fmdr8y" path="res://maps/catacombs/official_catacombs_map.glb" id="1_b8h0c"]
+
+[node name="Catacombs" type="Node3D"]
+
+[node name="official_catacombs_map" parent="." instance=ExtResource("1_b8h0c")]
