@@ -15,14 +15,14 @@ emission = Color(1, 0, 0.0156863, 1)
 texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bb25e"]
-size = Vector3(6.96143, 12.0784, 1)
+size = Vector3(0.933, 2.00059, 0.134)
 
 [node name="MobSpawner" type="Node3D"]
 script = ExtResource("2_jwxpo")
 
 [node name="Vase" type="Sprite3D" parent="."]
 material_overlay = SubResource("StandardMaterial3D_0cca5")
-pixel_size = 0.5
+pixel_size = 0.067
 shaded = true
 texture_filter = 0
 texture = ExtResource("1_kne3n")
@@ -30,7 +30,7 @@ texture = ExtResource("1_kne3n")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="SpawnLocation" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.804, 0.67)
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_e510p")]
 
@@ -39,13 +39,7 @@ script = ExtResource("5_lkgg7")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.215088, -0.0478821, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00224805, 0)
 shape = SubResource("BoxShape3D_bb25e")
-
-[node name="DebugHealthBar" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
-pixel_size = 0.1
-modulate = Color(0.984314, 0.764706, 0.466667, 1)
-font_size = 16
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

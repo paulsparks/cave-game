@@ -1,9 +1,9 @@
 class_name Player
 extends CharacterBody3D
 
-@export var speed = 30
-@export var gravity: float = 50
-@export var gravity_max: float = 100
+@export var speed = 5
+@export var gravity: float = 7
+@export var gravity_max: float = 13
 
 @onready var sprite_3d = $PlayerSprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

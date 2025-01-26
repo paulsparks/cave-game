@@ -4,15 +4,15 @@ extends CharacterBody3D
 @export var damage_per_hit = 20
 @export var xp_value = 200
 @export var animation_player: AnimationPlayer
-@export var max_gravity_speed: float = 80
+@export var max_gravity_speed: float = 10
 @export var enable_knockback = false
-@export var heaviness: float = 1
+@export var heaviness: float = 0.13
 
 
 @onready var timer = $Timer
 @onready var navigation_movement_component = $NavigationMovementComponent
 var is_nav_enabled = true
-var gravity_speed: float = 45
+var gravity_speed: float = 1.3
 var knockback_velocity: Vector3 = Vector3.ZERO
 
 var hurtbox_this_is_attacking: HurtboxComponent
@@ -67,7 +67,7 @@ func move_enemy():
 	
 	if knockback_velocity != Vector3.ZERO:
 		knockback_velocity *= multiplier
-		multiplier = clamp(multiplier - 0.05, 0, INF)
+		multiplier = clamp(multiplier - (0.005), 0, INF)
 	else:
 		multiplier = heaviness
 		
