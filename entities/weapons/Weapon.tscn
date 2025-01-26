@@ -42,14 +42,14 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hns12"]
-size = Vector3(9, 12, 8)
+size = Vector3(1.206, 1.608, 1.072)
 
 [node name="Weapon" type="Node3D"]
 script = ExtResource("1_s48mm")
 
 [node name="WeaponSprite" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0.001)
-pixel_size = 0.5
+pixel_size = 0.067
 shaded = true
 texture_filter = 0
 hframes = 4
@@ -62,7 +62,7 @@ libraries = {
 [node name="Hitbox" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.412, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67, -0.055, 0)
 shape = SubResource("BoxShape3D_hns12")
 
 [node name="DebugBoxMeshComponent" parent="Hitbox/CollisionShape3D" instance=ExtResource("2_b6iy7")]

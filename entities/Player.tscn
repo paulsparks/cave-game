@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cdiuhay0s4hxu"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_j224j"]
-[ext_resource type="Texture2D" uid="uid://dx7gns3v3pmbb" path="res://materials/player.png" id="2_r46v2"]
+[ext_resource type="Texture2D" uid="uid://dx7gns3v3pmbb" path="res://materials/player_14x27.png" id="2_r46v2"]
 [ext_resource type="PackedScene" uid="uid://dknpqbbbdei2t" path="res://entities/weapons/StarterSword.tscn" id="3_yli5v"]
 [ext_resource type="PackedScene" uid="uid://b6hoxlk4f2gue" path="res://CustomNodes/hurtbox_component.tscn" id="4_n1v27"]
 [ext_resource type="PackedScene" uid="uid://cvfike6ax6jys" path="res://CustomNodes/health_component.tscn" id="5_b7ubh"]
@@ -54,17 +54,17 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ti4pq"]
-size = Vector3(7, 13.5, 3)
+size = Vector3(0.938, 1.809, 0.402)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7qmrq"]
-size = Vector3(7, 13.5, 3)
+size = Vector3(0.938, 1.809, 0.402)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_j224j")
 
 [node name="PlayerSprite" type="Sprite3D" parent="."]
 material_overlay = SubResource("StandardMaterial3D_81olm")
-pixel_size = 0.5
+pixel_size = 0.067
 shaded = true
 texture_filter = 0
 texture = ExtResource("2_r46v2")
@@ -79,21 +79,21 @@ libraries = {
 [node name="StarterSword" parent="." instance=ExtResource("3_yli5v")]
 
 [node name="PlayerCollisions" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.204513, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.067, -0.027, 0)
 shape = SubResource("BoxShape3D_ti4pq")
 
 [node name="DebugHealthBar" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2171, 0)
-pixel_size = 0.1
-modulate = Color(0, 0.658824, 0.552941, 1)
-font_size = 22
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+modulate = Color(1, 0.27451, 0.27451, 1)
+text = "health bar"
+font_size = 40
 
 [node name="HurtboxComponent2" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_n1v27")]
 health_component = NodePath("../HealthComponent")
 is_player = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtboxComponent2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.204513, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.067, -0.027, 0)
 shape = SubResource("BoxShape3D_7qmrq")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("debug_health_label") instance=ExtResource("5_b7ubh")]
@@ -101,7 +101,6 @@ MAX_HEALTH = 200.0
 debug_health_label = NodePath("../DebugHealthBar")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 9.3141, 0.375)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 1.248, 0.05)
 light_color = Color(0.956863, 0.580392, 0.619608, 1)
-light_energy = 11.684
-spot_range = 26.0
+spot_range = 3.484

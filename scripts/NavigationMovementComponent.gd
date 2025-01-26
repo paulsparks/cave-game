@@ -3,7 +3,7 @@ extends Node
 
 @export var agent: NavigationAgent3D
 @export var enemy: CharacterBody3D
-@export var speed = 10
+@export var speed = 1.4
 
 
 var targeted_player: Player
@@ -37,9 +37,9 @@ func handle_movement(_delta):
 	
 	# It's computationally expensive and causes stutters when updating target navigation
 	# position every frame. Instead, we update target position when player strays from
-	# previous target position by 3 units.
+	# previous target position by 0.4 meters.
 	# To put it simply: we update the enemy's desired path to
-	# the player every time the player moves more than 3 meters.
+	# the player every time the player moves more than 0.4 meters.
 	var player_distance_from_agent_target = (agent.get_target_position() - targeted_player.global_position).abs()
-	if player_distance_from_agent_target.x > 3 or player_distance_from_agent_target.z > 3:
+	if player_distance_from_agent_target.x > 0.4 or player_distance_from_agent_target.z > 0.4:
 		agent.set_target_position(targeted_player.global_position)
