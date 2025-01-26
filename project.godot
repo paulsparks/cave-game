@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="cave-game"
-run/main_scene="res://maps/Map1.tscn"
+run/main_scene="res://maps/Catacombs.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
